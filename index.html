@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MKOS V3 – Enhanced Edition</title>
+  <title>MKOS V4 – Modern Edition</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"/>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,72 +12,48 @@
     <!-- Desktop Icons -->
     <div class="floating-icons">
       <div class="desktop-icon" data-app="youtube" aria-label="YouTube öffnen">
-        <div class="desktop-icon-image youtube">📺</div>
+        <div class="desktop-icon-image">📺</div>
         <div class="desktop-icon-label">YouTube</div>
       </div>
       <div class="desktop-icon" data-app="telegram" aria-label="Telegram öffnen">
-        <div class="desktop-icon-image telegram">✈️</div>
+        <div class="desktop-icon-image">✈️</div>
         <div class="desktop-icon-label">Telegram</div>
       </div>
       <div class="desktop-icon" data-app="instagram" aria-label="Instagram öffnen">
-        <div class="desktop-icon-image instagram">📷</div>
+        <div class="desktop-icon-image">📷</div>
         <div class="desktop-icon-label">Instagram</div>
       </div>
       <div class="desktop-icon" data-app="crazygames" aria-label="CrazyGames öffnen">
-        <div class="desktop-icon-image crazygames">🎮</div>
+        <div class="desktop-icon-image">🎮</div>
         <div class="desktop-icon-label">CrazyGames</div>
       </div>
-      <div class="desktop-icon" data-app="films" aria-label="Films öffnen">
-        <div class="desktop-icon-image films">🎬</div>
-        <div class="desktop-icon-label">Films</div>
-      </div>
-      <div class="desktop-icon" data-app="films2" aria-label="Films 2 öffnen">
-        <div class="desktop-icon-image films2">🎥</div>
-        <div class="desktop-icon-label">Films 2</div>
-      </div>
       <div class="desktop-icon" data-app="google" aria-label="Google öffnen">
-        <div class="desktop-icon-image google">🔍</div>
+        <div class="desktop-icon-image">🔍</div>
         <div class="desktop-icon-label">Google</div>
       </div>
       <div class="desktop-icon" data-app="twitter" aria-label="Twitter öffnen">
-        <div class="desktop-icon-image twitter">🐦</div>
+        <div class="desktop-icon-image">🐦</div>
         <div class="desktop-icon-label">Twitter</div>
       </div>
-      <div class="desktop-icon" data-app="github" aria-label="GitHub öffnen">
-        <div class="desktop-icon-image github">🐙</div>
-        <div class="desktop-icon-label">GitHub</div>
-      </div>
-      <div class="desktop-icon" data-app="stackoverflow" aria-label="StackOverflow öffnen">
-        <div class="desktop-icon-image stackoverflow">🧱</div>
-        <div class="desktop-icon-label">StackOverflow</div>
-      </div>
-      <div class="desktop-icon" data-app="wikipedia" aria-label="Wikipedia öffnen">
-        <div class="desktop-icon-image wikipedia">📚</div>
-        <div class="desktop-icon-label">Wikipedia</div>
-      </div>
       <div class="desktop-icon" data-app="calculator" aria-label="Rechner öffnen">
-        <div class="desktop-icon-image calculator">🧮</div>
+        <div class="desktop-icon-image">🧮</div>
         <div class="desktop-icon-label">Rechner</div>
       </div>
       <div class="desktop-icon" data-app="notes" aria-label="Notizen öffnen">
-        <div class="desktop-icon-image notes">📝</div>
+        <div class="desktop-icon-image">📝</div>
         <div class="desktop-icon-label">Notizen</div>
       </div>
-      <div class="desktop-icon" data-app="spotify" aria-label="Spotify öffnen">
-        <div class="desktop-icon-image spotify">🎵</div>
-        <div class="desktop-icon-label">Spotify</div>
+      <div class="desktop-icon" data-app="nextcloud" aria-label="Nextcloud öffnen">
+        <div class="desktop-icon-image">☁️</div>
+        <div class="desktop-icon-label">Nextcloud</div>
       </div>
-      <div class="desktop-icon" data-app="notepad" aria-label="Notepad++ öffnen">
-        <div class="desktop-icon-image notepad">📜</div>
-        <div class="desktop-icon-label">Notepad++</div>
-      </div>
-      <div class="desktop-icon" data-app="filemanager" aria-label="Dateimanager öffnen">
-        <div class="desktop-icon-image filemanager">📁</div>
-        <div class="desktop-icon-label">Dateimanager</div>
+      <div class="desktop-icon" data-app="settings" aria-label="Einstellungen öffnen">
+        <div class="desktop-icon-image">⚙️</div>
+        <div class="desktop-icon-label">Einstellungen</div>
       </div>
     </div>
 
-    <!-- Widgets rechts oben -->
+    <!-- Widgets -->
     <div class="desktop-widgets">
       <div class="widget time-widget floating">
         <h3 id="current-time">--:--</h3>
@@ -91,24 +68,18 @@
 
     <!-- Startmenü -->
     <div id="start-menu" class="start-menu">
-      <div class="start-menu-header">MKOS V3</div>
+      <div class="start-menu-header">MKOS V4</div>
       <div class="start-menu-apps">
         <div class="start-menu-app" data-app="youtube">📺 YouTube</div>
         <div class="start-menu-app" data-app="telegram">✈️ Telegram</div>
         <div class="start-menu-app" data-app="instagram">📷 Instagram</div>
         <div class="start-menu-app" data-app="crazygames">🎮 CrazyGames</div>
-        <div class="start-menu-app" data-app="films">🎬 Films</div>
-        <div class="start-menu-app" data-app="films2">🎥 Films 2</div>
         <div class="start-menu-app" data-app="google">🔍 Google</div>
         <div class="start-menu-app" data-app="twitter">🐦 Twitter</div>
-        <div class="start-menu-app" data-app="github">🐙 GitHub</div>
-        <div class="start-menu-app" data-app="stackoverflow">🧱 StackOverflow</div>
-        <div class="start-menu-app" data-app="wikipedia">📚 Wikipedia</div>
         <div class="start-menu-app" data-app="calculator">🧮 Rechner</div>
         <div class="start-menu-app" data-app="notes">📝 Notizen</div>
-        <div class="start-menu-app" data-app="spotify">🎵 Spotify</div>
-        <div class="start-menu-app" data-app="notepad">📜 Notepad++</div>
-        <div class="start-menu-app" data-app="filemanager">📁 Dateimanager</div>
+        <div class="start-menu-app" data-app="nextcloud">☁️ Nextcloud</div>
+        <div class="start-menu-app" data-app="settings">⚙️ Einstellungen</div>
       </div>
     </div>
 
@@ -119,22 +90,15 @@
       <div class="app-icon telegram" data-app="telegram" title="Telegram">✈️</div>
       <div class="app-icon instagram" data-app="instagram" title="Instagram">📷</div>
       <div class="app-icon crazygames" data-app="crazygames" title="CrazyGames">🎮</div>
-      <div class="app-icon films" data-app="films" title="Films">🎬</div>
-      <div class="app-icon films2" data-app="films2" title="Films 2">🎥</div>
       <div class="app-icon google" data-app="google" title="Google">🔍</div>
       <div class="app-icon twitter" data-app="twitter" title="Twitter">🐦</div>
-      <div class="app-icon github" data-app="github" title="GitHub">🐙</div>
-      <div class="app-icon stackoverflow" data-app="stackoverflow" title="StackOverflow">🧱</div>
-      <div class="app-icon wikipedia" data-app="wikipedia" title="Wikipedia">📚</div>
       <div class="app-icon calculator" data-app="calculator" title="Rechner">🧮</div>
       <div class="app-icon notes" data-app="notes" title="Notizen">📝</div>
-      <div class="app-icon spotify" data-app="spotify" title="Spotify">🎵</div>
-      <div class="app-icon notepad" data-app="notepad" title="Notepad++">📜</div>
-      <div class="app-icon filemanager" data-app="filemanager" title="Dateimanager">📁</div>
+      <div class="app-icon nextcloud" data-app="nextcloud" title="Nextcloud">☁️</div>
+      <div class="app-icon settings" data-app="settings" title="Einstellungen">⚙️</div>
     </div>
 
     <!-- App Windows -->
-    <!-- YouTube -->
     <div id="youtube-window" class="window" role="dialog" aria-labelledby="youtube-title">
       <div class="window-header">
         <div class="window-title" id="youtube-title">📺 YouTube</div>
@@ -148,7 +112,6 @@
         <div class="youtube-player">
           <input type="text" id="youtube-search" placeholder="YouTube-Suchbegriff oder Video-ID..." aria-label="YouTube-Suche"/>
           <button onclick="searchYouTube()">Suchen</button>
-          <button class="open-browser" onclick="openURL('https://www.youtube.com')">YouTube im Browser öffnen</button>
           <div class="video-container" id="video-container">
             <p>Ergebnisvideo erscheint hier.</p>
           </div>
@@ -156,397 +119,47 @@
       </div>
     </div>
 
-    <!-- Telegram -->
-    <div id="telegram-window" class="window" role="dialog" aria-labelledby="telegram-title">
+    <div id="nextcloud-window" class="window" role="dialog" aria-labelledby="nextcloud-title">
       <div class="window-header">
-        <div class="window-title" id="telegram-title">✈️ Telegram</div>
+        <div class="window-title" id="nextcloud-title">☁️ Nextcloud</div>
         <div class="window-controls">
-          <div class="window-control minimize" data-app="telegram"></div>
-          <div class="window-control maximize" data-app="telegram"></div>
-          <div class="window-control close" data-app="telegram"></div>
+          <div class="window-control minimize" data-app="nextcloud"></div>
+          <div class="window-control maximize" data-app="nextcloud"></div>
+          <div class="window-control close" data-app="nextcloud"></div>
         </div>
       </div>
       <div class="window-content">
-        <div class="app-links">
-          <a href="https://web.telegram.org" target="_blank" class="app-link">
-            <div class="app-link-icon">🌐</div>
-            <div class="app-link-info">
-              <h4>Telegram Web</h4>
-              <p>Browser-Version öffnen</p>
-            </div>
-          </a>
-          <a href="https://desktop.telegram.org" target="_blank" class="app-link">
-            <div class="app-link-icon">💻</div>
-            <div class="app-link-info">
-              <h4>Desktop App</h4>
-              <p>Desktop-Version herunterladen</p>
-            </div>
-          </a>
+        <div class="nextcloud">
+          <input type="text" id="nextcloud-url" placeholder="Nextcloud Server URL..." aria-label="Nextcloud URL"/>
+          <button onclick="connectNextcloud()">Verbinden</button>
+          <div id="nextcloud-files">Verbinde mit Nextcloud...</div>
         </div>
       </div>
     </div>
 
-    <!-- Instagram -->
-    <div id="instagram-window" class="window" role="dialog" aria-labelledby="instagram-title">
+    <div id="settings-window" class="window" role="dialog" aria-labelledby="settings-title">
       <div class="window-header">
-        <div class="window-title" id="instagram-title">📷 Instagram</div>
+        <div class="window-title" id="settings-title">⚙️ Einstellungen</div>
         <div class="window-controls">
-          <div class="window-control minimize" data-app="instagram"></div>
-          <div class="window-control maximize" data-app="instagram"></div>
-          <div class="window-control close" data-app="instagram"></div>
+          <div class="window-control minimize" data-app="settings"></div>
+          <div class="window-control maximize" data-app="settings"></div>
+          <div class="window-control close" data-app="settings"></div>
         </div>
       </div>
       <div class="window-content">
-        <div class="app-links">
-          <a href="https://www.instagram.com" target="_blank" class="app-link">
-            <div class="app-link-icon">📱</div>
-            <div class="app-link-info">
-              <h4>Instagram Web</h4>
-              <p>Browser-Version öffnen</p>
-            </div>
-          </a>
-          <a href="https://www.instagram.com/explore/" target="_blank" class="app-link">
-            <div class="app-link-icon">🔍</div>
-            <div class="app-link-info">
-              <h4>Entdecken</h4>
-              <p>Neue Inhalte anzeigen</p>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- CrazyGames -->
-    <div id="crazygames-window" class="window" role="dialog" aria-labelledby="crazygames-title">
-      <div class="window-header">
-        <div class="window-title" id="crazygames-title">🎮 CrazyGames</div>
-        <div class="window-controls">
-          <div class="window-control minimize" data-app="crazygames"></div>
-          <div class="window-control maximize" data-app="crazygames"></div>
-          <div class="window-control close" data-app="crazygames"></div>
-        </div>
-      </div>
-      <div class="window-content">
-        <iframe src="https://www.crazygames.com" title="CrazyGames"></iframe>
-      </div>
-    </div>
-
-    <!-- Films -->
-    <div id="films-window" class="window" role="dialog" aria-labelledby="films-title">
-      <div class="window-header">
-        <div class="window-title" id="films-title">🎬 Films</div>
-        <div class="window-controls">
-          <div class="window-control minimize" data-app="films"></div>
-          <div class="window-control maximize" data-app="films"></div>
-          <div class="window-control close" data-app="films"></div>
-        </div>
-      </div>
-      <div class="window-content">
-        <iframe src="https://mkylandia.github.io/Films/" title="Films"></iframe>
-      </div>
-    </div>
-
-    <!-- Films 2 -->
-    <div id="films2-window" class="window" role="dialog" aria-labelledby="films2-title">
-      <div class="window-header">
-        <div class="window-title" id="films2-title">🎥 Films 2</div>
-        <div class="window-controls">
-          <div class="window-control minimize" data-app="films2"></div>
-          <div class="window-control maximize" data-app="films2"></div>
-          <div class="window-control close" data-app="films2"></div>
-        </div>
-      </div>
-      <div class="window-content">
-        <iframe src="https://mkylandia.github.io/Films2/" title="Films 2"></iframe>
-      </div>
-    </div>
-
-    <!-- Google Dashboard -->
-    <div id="google-window" class="window" role="dialog" aria-labelledby="google-title">
-      <div class="window-header">
-        <div class="window-title" id="google-title">🔍 Google Dashboard</div>
-        <div class="window-controls">
-          <div class="window-control minimize" data-app="google"></div>
-          <div class="window-control maximize" data-app="google"></div>
-          <div class="window-control close" data-app="google"></div>
-        </div>
-      </div>
-      <div class="window-content">
-        <div class="widget-grid">
-          <div class="widget search-widget">
-            <h3>🔍 Google Suche</h3>
-            <input type="text" placeholder="Suche..." onkeypress="googleSearch(event)" aria-label="Google Suche"/>
+        <div class="settings">
+          <h3>Systemeinstellungen</h3>
+          <div class="setting-item">
+            <label>Thema:</label>
+            <select id="theme-selector" onchange="changeTheme()">
+              <option value="light">Hell</option>
+              <option value="dark">Dunkel</option>
+            </select>
           </div>
-          <div class="widget">
-            <h3>📧 Gmail</h3>
-            <p>Schnellzugriff auf deine E-Mails</p>
-            <button onclick="openURL('https://mail.google.com')">Gmail öffnen</button>
-          </div>
-          <div class="widget">
-            <h3>📅 Kalender</h3>
-            <p>Deine Termine im Überblick</p>
-            <button onclick="openURL('https://calendar.google.com')">Kalender öffnen</button>
-          </div>
-          <div class="widget">
-            <h3>💾 Drive</h3>
-            <p>Deine Dateien in der Cloud</p>
-            <button onclick="openURL('https://drive.google.com')">Drive öffnen</button>
-          </div>
-          <div class="widget">
-            <h3>🗺️ Maps</h3>
-            <p>Navigation und Karten</p>
-            <button onclick="openURL('https://maps.google.com')">Maps öffnen</button>
-          </div>
-          <div class="widget">
-            <h3>📺 YouTube</h3>
-            <p>Videos und Musik</p>
-            <button onclick="openURL('https://www.youtube.com')">YouTube öffnen</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Twitter -->
-    <div id="twitter-window" class="window" role="dialog" aria-labelledby="twitter-title">
-      <div class="window-header">
-        <div class="window-title" id="twitter-title">🐦 Twitter</div>
-        <div class="window-controls">
-          <div class="window-control minimize" data-app="twitter"></div>
-          <div class="window-control maximize" data-app="twitter"></div>
-          <div class="window-control close" data-app="twitter"></div>
-        </div>
-      </div>
-      <div class="window-content">
-        <div class="app-links">
-          <a href="https://twitter.com" target="_blank" class="app-link">
-            <div class="app-link-icon">🐦</div>
-            <div class="app-link-info">
-              <h4>Twitter / X</h4>
-              <p>Öffne Twitter im Browser</p>
-            </div>
-          </a>
-          <a href="https://twitter.com/explore" target="_blank" class="app-link">
-            <div class="app-link-icon">🔥</div>
-            <div class="app-link-info">
-              <h4>Trending</h4>
-              <p>Entdecke was gerade angesagt ist</p>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- GitHub -->
-    <div id="github-window" class="window" role="dialog" aria-labelledby="github-title">
-      <div class="window-header">
-        <div class="window-title" id="github-title">🐙 GitHub</div>
-        <div class="window-controls">
-          <div class="window-control minimize" data-app="github"></div>
-          <div class="window-control maximize" data-app="github"></div>
-          <div class="window-control close" data-app="github"></div>
-        </div>
-      </div>
-      <div class="window-content">
-        <div class="app-links">
-          <a href="https://github.com" target="_blank" class="app-link">
-            <div class="app-link-icon">🐙</div>
-            <div class="app-link-info">
-              <h4>GitHub</h4>
-              <p>Öffne GitHub im Browser</p>
-            </div>
-          </a>
-          <a href="https://github.com/explore" target="_blank" class="app-link">
-            <div class="app-link-icon">🔍</div>
-            <div class="app-link-info">
-              <h4>Explore</h4>
-              <p>Entdecke neue Repositories</p>
-            </div>
-          </a>
-          <a href="https://github.com/trending" target="_blank" class="app-link">
-            <div class="app-link-icon">📈</div>
-            <div class="app-link-info">
-              <h4>Trending</h4>
-              <p>Beliebte Projekte heute</p>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- StackOverflow -->
-    <div id="stackoverflow-window" class="window" role="dialog" aria-labelledby="stackoverflow-title">
-      <div class="window-header">
-        <div class="window-title" id="stackoverflow-title">🧱 StackOverflow</div>
-        <div class="window-controls">
-          <div class="window-control minimize" data-app="stackoverflow"></div>
-          <div class="window-control maximize" data-app="stackoverflow"></div>
-          <div class="window-control close" data-app="stackoverflow"></div>
-        </div>
-      </div>
-      <div class="window-content">
-        <div class="app-links">
-          <a href="https://stackoverflow.com" target="_blank" class="app-link">
-            <div class="app-link-icon">🧱</div>
-            <div class="app-link-info">
-              <h4>StackOverflow</h4>
-              <p>Fragen und Antworten für Entwickler</p>
-            </div>
-          </a>
-          <a href="https://stackoverflow.com/questions" target="_blank" class="app-link">
-            <div class="app-link-icon">❓</div>
-            <div class="app-link-info">
-              <h4>Fragen</h4>
-              <p>Durchsuche alle Fragen</p>
-            </div>
-          </a>
-          <a href="https://stackoverflow.com/tags" target="_blank" class="app-link">
-            <div class="app-link-icon">🏷️</div>
-            <div class="app-link-info">
-              <h4>Tags</h4>
-              <p>Finde Fragen nach Technologie</p>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Wikipedia -->
-    <div id="wikipedia-window" class="window" role="dialog" aria-labelledby="wikipedia-title">
-      <div class="window-header">
-        <div class="window-title" id="wikipedia-title">📚 Wikipedia</div>
-        <div class="window-controls">
-          <div class="window-control minimize" data-app="wikipedia"></div>
-          <div class="window-control maximize" data-app="wikipedia"></div>
-          <div class="window-control close" data-app="wikipedia"></div>
-        </div>
-      </div>
-      <div class="window-content">
-        <div id="wiki-content">Lade Artikel...</div>
-      </div>
-    </div>
-
-    <!-- Rechner -->
-    <div id="calculator-window" class="window" role="dialog" aria-labelledby="calculator-title">
-      <div class="window-header">
-        <div class="window-title" id="calculator-title">🧮 Rechner</div>
-        <div class="window-controls">
-          <div class="window-control minimize" data-app="calculator"></div>
-          <div class="window-control maximize" data-app="calculator"></div>
-          <div class="window-control close" data-app="calculator"></div>
-        </div>
-      </div>
-      <div class="window-content">
-        <div class="calculator">
-          <input type="text" id="calc-display" readonly aria-label="Rechner Anzeige"/>
-          <div class="calc-buttons">
-            <button onclick="clearCalc()">C</button>
-            <button onclick="appendCalc('(')">(</button>
-            <button onclick="appendCalc(')')">)</button>
-            <button onclick="appendCalc('/')">÷</button>
-            <button onclick="appendCalc('7')">7</button>
-            <button onclick="appendCalc('8')">8</button>
-            <button onclick="appendCalc('9')">9</button>
-            <button onclick="appendCalc('*')">×</button>
-            <button onclick="appendCalc('4')">4</button>
-            <button onclick="appendCalc('5')">5</button>
-            <button onclick="appendCalc('6')">6</button>
-            <button onclick="appendCalc('-')">−</button>
-            <button onclick="appendCalc('1')">1</button>
-            <button onclick="appendCalc('2')">2</button>
-            <button onclick="appendCalc('3')">3</button>
-            <button onclick="appendCalc('+')">+</button>
-            <button onclick="appendCalc('0')">0</button>
-            <button onclick="appendCalc('.')">.</button>
-            <button onclick="calculateResult()">=</button>
-            <button onclick="backspaceCalc()">←</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Notizen -->
-    <div id="notes-window" class="window" role="dialog" aria-labelledby="notes-title">
-      <div class="window-header">
-        <div class="window-title" id="notes-title">📝 Notizen</div>
-        <div class="window-controls">
-          <div class="window-control minimize" data-app="notes"></div>
-          <div class="window-control maximize" data-app="notes"></div>
-          <div class="window-control close" data-app="notes"></div>
-        </div>
-      </div>
-      <div class="window-content">
-        <textarea id="notes-area" placeholder="Hier deine Notizen eingeben..." aria-label="Notizen"></textarea>
-        <button class="open-button" onclick="downloadNotes()">Notizen herunterladen</button>
-      </div>
-    </div>
-
-    <!-- Spotify -->
-    <div id="spotify-window" class="window" role="dialog" aria-labelledby="spotify-title">
-      <div class="window-header">
-        <div class="window-title" id="spotify-title">🎵 Spotify</div>
-        <div class="window-controls">
-          <div class="window-control minimize" data-app="spotify"></div>
-          <div class="window-control maximize" data-app="spotify"></div>
-          <div class="window-control close" data-app="spotify"></div>
-        </div>
-      </div>
-      <div class="window-content">
-        <div class="app-links">
-          <a href="https://open.spotify.com" target="_blank" class="app-link">
-            <div class="app-link-icon">🎵</div>
-            <div class="app-link-info">
-              <h4>Spotify Web</h4>
-              <p>Öffne Spotify im Browser</p>
-            </div>
-          </a>
-          <a href="https://www.spotify.com/download" target="_blank" class="app-link">
-            <div class="app-link-icon">💻</div>
-            <div class="app-link-info">
-              <h4>Desktop App</h4>
-              <p>Spotify Desktop-Version herunterladen</p>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Notepad++ -->
-    <div id="notepad-window" class="window" role="dialog" aria-labelledby="notepad-title">
-      <div class="window-header">
-        <div class="window-title" id="notepad-title">📜 Notepad++</div>
-        <div class="window-controls">
-          <div class="window-control minimize" data-app="notepad"></div>
-          <div class="window-control maximize" data-app="notepad"></div>
-          <div class="window-control close" data-app="notepad"></div>
-        </div>
-      </div>
-      <div class="window-content">
-        <div class="notepad-editor">
-          <textarea id="code-editor" placeholder="Code hier eingeben (z.B. HTML, JS, CSS)..."></textarea>
-          <button class="open-button" onclick="previewCode()">Vorschau</button>
-          <div id="code-preview" class="code-preview"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Dateimanager -->
-    <div id="filemanager-window" class="window" role="dialog" aria-labelledby="filemanager-title">
-      <div class="window-header">
-        <div class="window-title" id="filemanager-title">📁 Dateimanager</div>
-        <div class="window-controls">
-          <div class="window-control minimize" data-app="filemanager"></div>
-          <div class="window-control maximize" data-app="filemanager"></div>
-          <div class="window-control close" data-app="filemanager"></div>
-        </div>
-      </div>
-      <div class="window-content">
-        <div class="filemanager">
-          <div class="filemanager-path">/home/user</div>
-          <div class="filemanager-items">
-            <div class="filemanager-item" data-type="folder">Dokumente</div>
-            <div class="filemanager-item" data-type="folder">Downloads</div>
-            <div class="filemanager-item" data-type="file">notizen.txt</div>
-            <div class="filemanager-item" data-type="file">bild.jpg</div>
+          <div class="setting-item">
+            <label>Hintergrund:</label>
+            <input type="text" id="wallpaper-url" placeholder="URL zu Hintergrundbild"/>
+            <button onclick="changeWallpaper()">Ändern</button>
           </div>
         </div>
       </div>
