@@ -1,174 +1,160 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MKOS V4 – Modern Edition</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"/>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom OS</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="desktop" id="desktop">
-    <!-- Desktop Icons -->
-    <div class="floating-icons">
-      <div class="desktop-icon" data-app="youtube" aria-label="YouTube öffnen">
-        <div class="desktop-icon-image">📺</div>
-        <div class="desktop-icon-label">YouTube</div>
-      </div>
-      <div class="desktop-icon" data-app="telegram" aria-label="Telegram öffnen">
-        <div class="desktop-icon-image">✈️</div>
-        <div class="desktop-icon-label">Telegram</div>
-      </div>
-      <div class="desktop-icon" data-app="instagram" aria-label="Instagram öffnen">
-        <div class="desktop-icon-image">📷</div>
-        <div class="desktop-icon-label">Instagram</div>
-      </div>
-      <div class="desktop-icon" data-app="crazygames" aria-label="CrazyGames öffnen">
-        <div class="desktop-icon-image">🎮</div>
-        <div class="desktop-icon-label">CrazyGames</div>
-      </div>
-      <div class="desktop-icon" data-app="google" aria-label="Google öffnen">
-        <div class="desktop-icon-image">🔍</div>
-        <div class="desktop-icon-label">Google</div>
-      </div>
-      <div class="desktop-icon" data-app="twitter" aria-label="Twitter öffnen">
-        <div class="desktop-icon-image">🐦</div>
-        <div class="desktop-icon-label">Twitter</div>
-      </div>
-      <div class="desktop-icon" data-app="calculator" aria-label="Rechner öffnen">
-        <div class="desktop-icon-image">🧮</div>
-        <div class="desktop-icon-label">Rechner</div>
-      </div>
-      <div class="desktop-icon" data-app="notes" aria-label="Notizen öffnen">
-        <div class="desktop-icon-image">📝</div>
-        <div class="desktop-icon-label">Notizen</div>
-      </div>
-      <div class="desktop-icon" data-app="nextcloud" aria-label="Nextcloud öffnen">
-        <div class="desktop-icon-image">☁️</div>
-        <div class="desktop-icon-label">Nextcloud</div>
-      </div>
-      <div class="desktop-icon" data-app="settings" aria-label="Einstellungen öffnen">
-        <div class="desktop-icon-image">⚙️</div>
-        <div class="desktop-icon-label">Einstellungen</div>
+<body class="dark">
+  <div class="desktop">
+    <div class="desktop-icon" data-app="youtube" aria-label="YouTube öffnen">
+      <div class="desktop-icon-image">▶️</div>
+      <div class="desktop-icon-label">YouTube</div>
+    </div>
+    <div class="desktop-icon" data-app="instagram" aria-label="Instagram öffnen">
+      <div class="desktop-icon-image">📷</div>
+      <div class="desktop-icon-label">Instagram</div>
+    </div>
+    <div class="desktop-icon" data-app="telegram" aria-label="Telegram öffnen">
+      <div class="desktop-icon-image">✈️</div>
+      <div class="desktop-icon-label">Telegram</div>
+    </div>
+    <div class="desktop-icon" data-app="mkfilms1" aria-label="Mkfilms 1 öffnen">
+      <div class="desktop-icon-image">🎬</div>
+      <div class="desktop-icon-label">Mkfilms 1</div>
+    </div>
+    <div class="desktop-icon" data-app="mkfilms2" aria-label="Mkfilms 2 öffnen">
+      <div class="desktop-icon-image">🎥</div>
+      <div class="desktop-icon-label">Mkfilms 2</div>
+    </div>
+  </div>
+
+  <div class="taskbar">
+    <div class="start-button">☰</div>
+    <div class="app-icon youtube" data-app="youtube" title="YouTube">▶️</div>
+    <div class="app-icon instagram" data-app="instagram" title="Instagram">📷</div>
+    <div class="app-icon telegram" data-app="telegram" title="Telegram">✈️</div>
+    <div class="app-icon mkfilms1" data-app="mkfilms1" title="Mkfilms 1">🎬</div>
+    <div class="app-icon mkfilms2" data-app="mkfilms2" title="Mkfilms 2">🎥</div>
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <div class="start-menu hide">
+    <div class="start-menu-app" data-app="youtube">▶️ YouTube</div>
+    <div class="start-menu-app" data-app="instagram">📷 Instagram</div>
+    <div class="start-menu-app" data-app="telegram">✈️ Telegram</div>
+    <div class="start-menu-app" data-app="mkfilms1">🎬 Mkfilms 1</div>
+    <div class="start-menu-app" data-app="mkfilms2">🎥 Mkfilms 2</div>
+  </div>
+
+  <div id="youtube-window" class="window hide" role="dialog" aria-labelledby="youtube-title">
+    <div class="window-header">
+      <div class="window-title" id="youtube-title">▶️ YouTube</div>
+      <div class="window-controls">
+        <div class="window-control minimize" data-app="youtube" data-tooltip="Minimieren"></div>
+        <div class="window-control maximize" data-app="youtube" data-tooltip="Maximieren"></div>
+        <div class="window-control close" data-app="youtube" data-tooltip="Schließen"></div>
       </div>
     </div>
-
-    <!-- Widgets -->
-    <div class="desktop-widgets">
-      <div class="widget time-widget floating">
-        <h3 id="current-time">--:--</h3>
-        <p id="current-date">--, -- -- ----</p>
-      </div>
-      <div class="widget weather-widget">
-        <h3>🌤️ Wetter</h3>
-        <p class="weather-temp">22 °C – Teilweise bewölkt</p>
-        <p class="weather-location">Heidenheim, Deutschland</p>
-      </div>
-    </div>
-
-    <!-- Startmenü -->
-    <div id="start-menu" class="start-menu">
-      <div class="start-menu-header">MKOS V4</div>
-      <div class="start-menu-apps">
-        <div class="start-menu-app" data-app="youtube">📺 YouTube</div>
-        <div class="start-menu-app" data-app="telegram">✈️ Telegram</div>
-        <div class="start-menu-app" data-app="instagram">📷 Instagram</div>
-        <div class="start-menu-app" data-app="crazygames">🎮 CrazyGames</div>
-        <div class="start-menu-app" data-app="google">🔍 Google</div>
-        <div class="start-menu-app" data-app="twitter">🐦 Twitter</div>
-        <div class="start-menu-app" data-app="calculator">🧮 Rechner</div>
-        <div class="start-menu-app" data-app="notes">📝 Notizen</div>
-        <div class="start-menu-app" data-app="nextcloud">☁️ Nextcloud</div>
-        <div class="start-menu-app" data-app="settings">⚙️ Einstellungen</div>
-      </div>
-    </div>
-
-    <!-- Taskbar -->
-    <div class="taskbar">
-      <div class="app-icon start-button" onclick="toggleStartMenu()" title="Startmenü">🏠</div>
-      <div class="app-icon youtube" data-app="youtube" title="YouTube">📺</div>
-      <div class="app-icon telegram" data-app="telegram" title="Telegram">✈️</div>
-      <div class="app-icon instagram" data-app="instagram" title="Instagram">📷</div>
-      <div class="app-icon crazygames" data-app="crazygames" title="CrazyGames">🎮</div>
-      <div class="app-icon google" data-app="google" title="Google">🔍</div>
-      <div class="app-icon twitter" data-app="twitter" title="Twitter">🐦</div>
-      <div class="app-icon calculator" data-app="calculator" title="Rechner">🧮</div>
-      <div class="app-icon notes" data-app="notes" title="Notizen">📝</div>
-      <div class="app-icon nextcloud" data-app="nextcloud" title="Nextcloud">☁️</div>
-      <div class="app-icon settings" data-app="settings" title="Einstellungen">⚙️</div>
-    </div>
-
-    <!-- App Windows -->
-    <div id="youtube-window" class="window" role="dialog" aria-labelledby="youtube-title">
-      <div class="window-header">
-        <div class="window-title" id="youtube-title">📺 YouTube</div>
-        <div class="window-controls">
-          <div class="window-control minimize" data-app="youtube"></div>
-          <div class="window-control maximize" data-app="youtube"></div>
-          <div class="window-control close" data-app="youtube"></div>
-        </div>
-      </div>
-      <div class="window-content">
-        <div class="youtube-player">
-          <input type="text" id="youtube-search" placeholder="YouTube-Suchbegriff oder Video-ID..." aria-label="YouTube-Suche"/>
-          <button onclick="searchYouTube()">Suchen</button>
-          <div class="video-container" id="video-container">
-            <p>Ergebnisvideo erscheint hier.</p>
+    <div class="window-content">
+      <div class="app-links">
+        <a href="https://www.youtube.com" target="_blank" class="app-link">
+          <div class="app-link-icon">🌐</div>
+          <div class="app-link-info">
+            <h4>YouTube Web</h4>
+            <p>Öffne YouTube im Browser</p>
           </div>
-        </div>
+        </a>
       </div>
     </div>
+  </div>
 
-    <div id="nextcloud-window" class="window" role="dialog" aria-labelledby="nextcloud-title">
-      <div class="window-header">
-        <div class="window-title" id="nextcloud-title">☁️ Nextcloud</div>
-        <div class="window-controls">
-          <div class="window-control minimize" data-app="nextcloud"></div>
-          <div class="window-control maximize" data-app="nextcloud"></div>
-          <div class="window-control close" data-app="nextcloud"></div>
-        </div>
-      </div>
-      <div class="window-content">
-        <div class="nextcloud">
-          <input type="text" id="nextcloud-url" placeholder="Nextcloud Server URL..." aria-label="Nextcloud URL"/>
-          <button onclick="connectNextcloud()">Verbinden</button>
-          <div id="nextcloud-files">Verbinde mit Nextcloud...</div>
-        </div>
+  <div id="instagram-window" class="window hide" role="dialog" aria-labelledby="instagram-title">
+    <div class="window-header">
+      <div class="window-title" id="instagram-title">📷 Instagram</div>
+      <div class="window-controls">
+        <div class="window-control minimize" data-app="instagram" data-tooltip="Minimieren"></div>
+        <div class="window-control maximize" data-app="instagram" data-tooltip="Maximieren"></div>
+        <div class="window-control close" data-app="instagram" data-tooltip="Schließen"></div>
       </div>
     </div>
-
-    <div id="settings-window" class="window" role="dialog" aria-labelledby="settings-title">
-      <div class="window-header">
-        <div class="window-title" id="settings-title">⚙️ Einstellungen</div>
-        <div class="window-controls">
-          <div class="window-control minimize" data-app="settings"></div>
-          <div class="window-control maximize" data-app="settings"></div>
-          <div class="window-control close" data-app="settings"></div>
-        </div>
-      </div>
-      <div class="window-content">
-        <div class="settings">
-          <h3>Systemeinstellungen</h3>
-          <div class="setting-item">
-            <label>Thema:</label>
-            <select id="theme-selector" onchange="changeTheme()">
-              <option value="light">Hell</option>
-              <option value="dark">Dunkel</option>
-            </select>
+    <div class="window-content">
+      <div class="app-links">
+        <a href="https://www.instagram.com" target="_blank" class="app-link">
+          <div class="app-link-icon">🌐</div>
+          <div class="app-link-info">
+            <h4>Instagram Web</h4>
+            <p>Öffne Instagram im Browser</p>
           </div>
-          <div class="setting-item">
-            <label>Hintergrund:</label>
-            <input type="text" id="wallpaper-url" placeholder="URL zu Hintergrundbild"/>
-            <button onclick="changeWallpaper()">Ändern</button>
-          </div>
-        </div>
+        </a>
       </div>
     </div>
+  </div>
 
-    <!-- Kontextmenü -->
-    <div id="context-menu" class="context-menu">
-      <div class="context-menu-item" onclick="openAppFromContext()">Öffnen</div>
-      <div class="context-menu-item" onclick="openURLFromContext()">Im Browser öffnen</div>
+  <div id="telegram-window" class="window hide" role="dialog" aria-labelledby="telegram-title">
+    <div class="window-header">
+      <div class="window-title" id="telegram-title">✈️ Telegram</div>
+      <div class="window-controls">
+        <div class="window-control minimize" data-app="telegram" data-tooltip="Minimieren"></div>
+        <div class="window-control maximize" data-app="telegram" data-tooltip="Maximieren"></div>
+        <div class="window-control close" data-app="telegram" data-tooltip="Schließen"></div>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="app-links">
+        <a href="https://web.telegram.org" target="_blank" class="app-link">
+          <div class="app-link-icon">🌐</div>
+          <div class="app-link-info">
+            <h4>Telegram Web</h4>
+            <p>Öffne Telegram im Browser</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div id="mkfilms1-window" class="window hide" role="dialog" aria-labelledby="mkfilms1-title">
+    <div class="window-header">
+      <div class="window-title" id="mkfilms1-title">🎬 Mkfilms 1</div>
+      <div class="window-controls">
+        <div class="window-control minimize" data-app="mkfilms1" data-tooltip="Minimieren"></div>
+        <div class="window-control maximize" data-app="mkfilms1" data-tooltip="Maximieren"></div>
+        <div class="window-control close" data-app="mkfilms1" data-tooltip="Schließen"></div>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="app-links">
+        <a href="https://mkylandia.github.io/Films/" target="_blank" class="app-link">
+          <div class="app-link-icon">🌐</div>
+          <div class="app-link-info">
+            <h4>Mkfilms 1 Web</h4>
+            <p>Öffne Mkfilms 1 im Browser</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div id="mkfilms2-window" class="window hide" role="dialog" aria-labelledby="mkfilms2-title">
+    <div class="window-header">
+      <div class="window-title" id="mkfilms2-title">🎥 Mkfilms 2</div>
+      <div class="window-controls">
+        <div class="window-control minimize" data-app="mkfilms2" data-tooltip="Minimieren"></div>
+        <div class="window-control maximize" data-app="mkfilms2" data-tooltip="Maximieren"></div>
+        <div class="window-control close" data-app="mkfilms2" data-tooltip="Schließen"></div>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="app-links">
+        <a href="https://mkylandia.github.io/Films2/" target="_blank" class="app-link">
+          <div class="app-link-icon">🌐</div>
+          <div class="app-link-info">
+            <h4>Mkfilms 2 Web</h4>
+            <p>Öffne Mkfilms 2 im Browser</p>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 
