@@ -1,0 +1,488 @@
+/* ----------------- Basis-Reset & Body ----------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  height: 100vh;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* ----------------- Desktop-Fläche ----------------- */
+.desktop {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+}
+
+/* ----------------- Floating Icons ----------------- */
+.floating-icons {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.desktop-icon:hover {
+  transform: translateY(-5px) scale(1.05);
+}
+
+.desktop-icon-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: white;
+  margin-bottom: 6px;
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.2s ease;
+}
+
+.desktop-icon-image:hover {
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+}
+
+.desktop-icon-label {
+  color: white;
+  font-size: 12px;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* ----------------- Widgets rechts oben ----------------- */
+.desktop-widgets {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.widget {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.widget:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.time-widget {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  text-align: center;
+  color: white;
+}
+
+.time-widget h3 {
+  font-size: 26px;
+  margin-bottom: 4px;
+}
+
+.time-widget p {
+  font-size: 13px;
+}
+
+.weather-widget {
+  background: linear-gradient(135deg, #74b9ff, #0984e3);
+  color: white;
+  text-align: center;
+}
+
+.weather-widget h3 {
+  margin-bottom: 8px;
+}
+
+.weather-temp,
+.weather-location {
+  font-size: 14px;
+}
+
+/* ----------------- Taskbar ----------------- */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(18px);
+  border-radius: 20px 20px 0 0;
+  padding: 10px 24px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 -6px 30px rgba(0, 0, 0, 0.3);
+}
+
+.app-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.app-icon:hover {
+  transform: translateY(-5px) scale(1.08);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+}
+
+/* Farben für die einzelnen Icons */
+.youtube        { background: linear-gradient(135deg, #ff0000, #cc0000); }
+.telegram       { background: linear-gradient(135deg, #0088cc, #005580); }
+.instagram      { background: linear-gradient(135deg, #e4405f, #833ab4, #fd1d1d, #fcb045); }
+.crazygames     { background: linear-gradient(135deg, #ff6b35, #f7931e); }
+.films          { background: linear-gradient(135deg, #2c3e50, #34495e); }
+.google         { background: linear-gradient(135deg, #4285f4, #34a853); }
+.twitter        { background: linear-gradient(135deg, #1da1f2, #0d8ddb); }
+.github         { background: linear-gradient(135deg, #333333, #6e5494); }
+.stackoverflow  { background: linear-gradient(135deg, #f48024, #e06f13); }
+.wikipedia      { background: linear-gradient(135deg, #000000, #666666); }
+.calculator     { background: linear-gradient(135deg, #4caf50, #087f23); }
+.notes          { background: linear-gradient(135deg, #ffeb3b, #fbc02d); }
+.start-button   { background: linear-gradient(135deg, #667eea, #764ba2); border: 2px solid rgba(255, 255, 255, 0.2); }
+
+/* ----------------- Fenster (modale Fenster) ----------------- */
+.window {
+  position: absolute;
+  display: none;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(18px);
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0,0,0,0.05);
+  min-width: 400px;
+  min-height: 300px;
+  max-width: 90vw;
+  max-height: 90vh;
+  resize: both; /* Fenster ist resizable */
+  overflow: hidden;
+  transition: opacity 0.25s ease, box-shadow 0.25s ease;
+}
+
+.window.show {
+  display: block;
+  opacity: 1;
+}
+
+.window.hide {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* ----------------- Fenster-Kopfzeile ----------------- */
+.window-header {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: move;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 12px 12px 0 0;
+}
+
+.window-title {
+  font-weight: 600;
+  color: #333;
+  font-size: 15px;
+}
+
+.window-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.window-control {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.window-control.maximize {
+  background: #FFD500;
+}
+
+.window-control.maximize:hover {
+  background: #FFC100;
+  transform: scale(1.2);
+}
+
+.window-control.close {
+  background: #ff5f56;
+}
+
+.window-control.close:hover {
+  background: #e04848;
+  transform: scale(1.2);
+}
+
+/* ----------------- Fenster-Inhalt ----------------- */
+.window-content {
+  padding: 0;
+  height: calc(100% - 40px);
+  overflow: auto;
+}
+
+.window-content iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.window-content p {
+  padding: 20px;
+  font-size: 14px;
+  color: #333;
+}
+
+.open-button {
+  margin: 20px;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  background: #4285f4;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.open-button:hover {
+  background: #396de3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+}
+
+/* ----------------- Google-Widgets ----------------- */
+.widget-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  padding: 20px;
+}
+
+.search-widget input {
+  width: 100%;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #2c3e50;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.search-widget input:focus {
+  background: rgba(255, 255, 255, 0.3);
+  outline: none;
+}
+
+.search-widget input::placeholder {
+  color: rgba(44, 62, 80, 0.6);
+}
+
+.widget button {
+  margin-top: 10px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #4285f4;
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.widget button:hover {
+  background: #396de3;
+  transform: translateY(-1px);
+}
+
+/* ----------------- YouTube-Suche ----------------- */
+.youtube-player {
+  padding: 20px;
+  text-align: center;
+}
+
+.youtube-player input {
+  width: 60%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.youtube-player button {
+  padding: 10px 16px;
+  margin-right: 10px;
+  background: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.youtube-player button:hover {
+  background: #cc0000;
+}
+
+.video-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.video-container iframe {
+  max-width: 100%;
+  height: 300px;
+  border-radius: 8px;
+}
+
+/* ----------------- App-Links ----------------- */
+.app-links {
+  padding: 20px;
+  display: grid;
+  gap: 12px;
+}
+
+.app-link {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.app-link:hover {
+  background: rgba(0, 0, 0, 0.1);
+  transform: translateX(4px);
+}
+
+.app-link-icon {
+  font-size: 24px;
+  margin-right: 12px;
+}
+
+.app-link-info h4 {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+}
+
+.app-link-info p {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* ----------------- Wikipedia-Artikel ----------------- */
+#wiki-content {
+  padding: 20px;
+  line-height: 1.6;
+  color: #333;
+}
+
+#wiki-content h1,
+#wiki-content h2,
+#wiki-content h3 {
+  margin: 20px 0 10px 0;
+  color: #2c3e50;
+}
+
+#wiki-content p {
+  margin-bottom: 15px;
+  padding: 0;
+}
+
+/* ----------------- Rechner ----------------- */
+.calculator {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#calc-display {
+  width: 80%;
+  padding: 10px;
+  font-size: 18px;
+  margin-bottom: 15px;
+  text-align: right;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.calc-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.calc-buttons button {
+  padding: 14px;
+  font-size: 18px;
+  border: none;
+  border-radius: 6px;
+  background: #f0f0f0;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.calc-buttons button:hover {
+  background: #e0e0e0;
+}
+
+/* ----------------- Notizen ----------------- */
+#notes-area {
+  width: 92%;
+  height: 60%;
+  margin: 20px;
+  font-size: 14px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  resize: vertical;
+  outline: none;
+}
