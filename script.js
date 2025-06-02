@@ -13,8 +13,8 @@ function openApp(appName) {
   appWindow.style.zIndex = ++windowZIndex;
   activeApp = appName;
 
-  const width = Math.min(800, window.innerWidth * 0.8);
-  const height = Math.min(600, window.innerHeight * 0.8);
+  const width = Math.min(850, window.innerWidth * 0.85);
+  const height = Math.min(650, window.innerHeight * 0.85);
   const leftPos = (window.innerWidth - width) / 2;
   const topPos = (window.innerHeight - height) / 2;
   appWindow.style.left = `${Math.max(leftPos, 20)}px`;
@@ -39,7 +39,7 @@ function closeApp(appName) {
     appWindow.style.display = 'none';
     if (activeApp === appName) activeApp = null;
     updateTaskbar();
-  }, 200);
+  }, 300);
 }
 
 function minimizeApp(appName) {
@@ -52,7 +52,7 @@ function minimizeApp(appName) {
     appWindow.dataset.minimized = "true";
     if (activeApp === appName) activeApp = null;
     updateTaskbar();
-  }, 200);
+  }, 300);
 }
 
 function toggleMaximize(appName) {
@@ -66,7 +66,7 @@ function toggleMaximize(appName) {
     appWindow.style.width = original.width;
     appWindow.style.height = original.height;
     appWindow.dataset.maximized = "false";
-    appWindow.style.borderRadius = "12px";
+    appWindow.style.borderRadius = "20px";
   } else {
     originalSizes[appName] = JSON.stringify({
       left: appWindow.style.left,
@@ -79,7 +79,7 @@ function toggleMaximize(appName) {
     appWindow.style.width = "96vw";
     appWindow.style.height = "96vh";
     appWindow.dataset.maximized = "true";
-    appWindow.style.borderRadius = "8px";
+    appWindow.style.borderRadius = "10px";
   }
   updateTaskbar();
 }
@@ -110,8 +110,18 @@ function makeDraggable(element) {
     mouseY = e.clientY;
     let newLeft = element.offsetLeft - posX;
     let newTop = element.offsetTop - posY;
-    newLeft = Math.max(0, Math.min(newLeft, window.innerWidth - element.offsetWidth));
-    newTop = Math.max(0, Math.min(newTop, window.innerHeight - element.offsetHeight));
+
+    // Window snapping
+    const snapThreshold = 20;
+    if (newLeft < snapThreshold) newLeft = 0;
+    if (newTop < snapThreshold) newTop = 0;
+    if (window.innerWidth - newLeft - element.offsetWidth < snapThreshold) {
+      newLeft = window.innerWidth - element.offsetWidth;
+    }
+    if (window.innerHeight - newTop - element.offsetHeight < snapThreshold) {
+      newTop = window.innerHeight - element.offsetHeight;
+    }
+
     element.style.left = newLeft + "px";
     element.style.top = newTop + "px";
   }
@@ -124,34 +134,6 @@ function makeDraggable(element) {
 
 function openURL(url) {
   window.open(url, "_blank");
-}
-
-function googleSearch(event) {
-  if (event.key === 'Enter') {
-    const query = event.target.value.trim();
-    if (query) {
-      openURL(`https://www.google.com/search?q=${encodeURIComponent(query)}`);
-      event.target.value = '';
-    }
-  }
-}
-
-function toggleStartMenu() {
-  const startMenu = document.getElementById('start-menu');
-  startMenu.classList.toggle('show');
-}
-
-function loadWikipediaArticle() {
-  const endpoint = "https://de.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&titles=Deutschland&format=json&origin=*";
-  fetch(endpoint)
-    .then(res => res.json())
-    .then(data => {
-      const page = Object.values(data.query.pages)[0];
-      document.getElementById("wiki-content").innerHTML = page.extract;
-    })
-    .catch(() => {
-      document.getElementById("wiki-content").textContent = "Fehler beim Laden des Artikels.";
-    });
 }
 
 function searchYouTube() {
@@ -169,83 +151,24 @@ function searchYouTube() {
   }
 }
 
-function appendCalc(value) {
-  const display = document.getElementById("calc-display");
-  display.value += value;
-}
-
-function calculateResult() {
-  const display = document.getElementById("calc-display");
-  try {
-    display.value = eval(display.value) ?? "";
-  } catch {
-    display.value = "Fehler";
+function connectNextcloud() {
+  const url = document.getElementById("nextcloud-url").value.trim();
+  if (!url) {
+    document.getElementById("nextcloud-files").innerHTML = "Bitte gib eine Nextcloud-URL ein.";
+    return;
   }
+  document.getElementById("nextcloud-files").innerHTML = `<iframe src="${url}" title="Nextcloud"></iframe>`;
 }
 
-function clearCalc() {
-  document.getElementById("calc-display").value = "";
+function changeTheme() {
+  const theme = document.getElementById("theme-selector").value;
+  document.body.classList.toggle('dark', theme === 'dark');
 }
 
-function backspaceCalc() {
-  const display = document.getElementById("calc-display");
-  display.value = display.value.slice(0, -1);
-}
-
-function downloadNotes() {
-  const content = document.getElementById("notes-area").value;
-  const blob = new Blob([content], { type: "text/plain" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "notizen.txt";
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-function previewCode() {
-  const code = document.getElementById("code-editor").value;
-  const preview = document.getElementById("code-preview");
-  try {
-    preview.innerHTML = code;
-  } catch {
-    preview.innerHTML = "<p>Fehler in der Vorschau</p>";
-  }
-}
-
-function updateTaskbar() {
-  document.querySelectorAll('.app-icon:not(.start-button)').forEach(icon => {
-    const appName = icon.dataset.app;
-    const appWindow = document.getElementById(`${appName}-window`);
-    if (appWindow && appWindow.style.display === 'block') {
-      icon.classList.add('active');
-    } else {
-      icon.classList.remove('active');
-    }
-  });
-}
-
-function openAppFromContext() {
-  if (contextApp) openApp(contextApp);
-}
-
-function openURLFromContext() {
-  if (contextApp) {
-    const urls = {
-      youtube: 'https://www.youtube.com',
-      telegram: 'https://web.telegram.org',
-      instagram: 'https://www.instagram.com',
-      crazygames: 'https://www.crazygames.com',
-      films: 'https://mkylandia.github.io/Films/',
-      films2: 'https://mkylandia.github.io/Films2/',
-      google: 'https://www.google.com',
-      twitter: 'https://twitter.com',
-      github: 'https://github.com',
-      stackoverflow: 'https://stackoverflow.com',
-      wikipedia: 'https://de.wikipedia.org',
-      spotify: 'https://open.spotify.com'
-    };
-    if (urls[contextApp]) openURL(urls[contextApp]);
+function changeWallpaper() {
+  const url = document.getElementById("wallpaper-url").value.trim();
+  if (url) {
+    document.querySelector('.desktop').style.background = `url('${url}') no-repeat center center/cover`;
   }
 }
 
@@ -295,30 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('context-menu').classList.remove('show');
     document.getElementById('start-menu').classList.remove('show');
   });
-  document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey) {
-      const shortcuts = {
-        'y': 'youtube',
-        't': 'telegram',
-        'i': 'instagram',
-        'c': 'crazygames',
-        'f': 'films',
-        'g': 'google',
-        'w': 'twitter',
-        'h': 'github',
-        's': 'stackoverflow',
-        'k': 'wikipedia',
-        'r': 'calculator',
-        'n': 'notes',
-        'p': 'spotify',
-        'e': 'notepad',
-        'd': 'filemanager'
-      };
-      if (shortcuts[e.key]) openApp(shortcuts[e.key]);
-    }
-  });
 
   updateTime();
   setInterval(updateTime, 1000);
-  loadWikipediaArticle();
 });
