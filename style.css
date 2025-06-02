@@ -1,220 +1,313 @@
-body {
-  margin: 0;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
-  color: #e5e7eb;
-  height: 100vh;
-  overflow: hidden;
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    background-color: #333; /* Fallback */
 }
 
-.desktop {
-  height: calc(100vh - 50px);
-  padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+#desktop {
+    height: 100vh;
+    background: url('https://source.unsplash.com/random/1920x1080?nature,water') no-repeat center center fixed; /* Dynamischer Hintergrund */
+    background-size: cover;
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Um Taskleiste unten zu halten */
+    color: white;
 }
 
-.desktop-icon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 18px;
-  border-radius: 24px;
-  background: linear-gradient(145deg, #ffffff, #f0f0f0);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  cursor: pointer;
+/* Taskleiste */
+#taskbar {
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
 }
 
-body.dark .desktop-icon {
-  background: linear-gradient(145deg, #374151, #1f2937);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+#start-menu-button {
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-.desktop-icon:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+#start-menu-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-.desktop-icon-image {
-  font-size: 2rem;
+#start-menu-button .material-icons {
+    font-size: 28px;
 }
 
-.desktop-icon-label {
-  color: #1f2937;
-  margin-top: 8px;
-  font-size: 0.9rem;
+#running-apps {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
 }
 
-body.dark .desktop-icon-label {
-  color: #e5e7eb;
+#system-tray {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-right: 10px;
+    font-size: 0.9em;
 }
 
-.taskbar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 50px;
-  background: linear-gradient(180deg, rgba(17, 24, 39, 0.95), rgba(31, 41, 55, 0.95));
-  box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.3);
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
+/* Startmenü */
+#start-menu {
+    position: fixed;
+    bottom: 50px; /* Höhe der Taskleiste */
+    left: 10px;
+    width: 350px;
+    max-height: 500px;
+    background-color: rgba(40, 40, 40, 0.95);
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+    z-index: 999;
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transform: translateY(20px);
+    opacity: 0;
 }
 
-.start-button {
-  font-size: 1.5rem;
-  padding: 10px;
-  cursor: pointer;
+#start-menu:not(.hidden) {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+#search-bar {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+#start-menu-apps {
+    overflow-y: auto;
+    max-height: calc(500px - 70px); /* Max-Höhe minus Suchleiste und Padding */
+}
+
+.start-menu-app-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+    gap: 10px;
+}
+
+.start-menu-app-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.start-menu-app-item .app-icon-sm {
+    font-size: 24px; /* Für Emoji-Icons */
+    width: 24px;
+    text-align: center;
+}
+
+/* App Grid auf dem Desktop */
+#app-grid {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px;
+    overflow-y: auto;
+    flex-grow: 1; /* Nimmt den restlichen Platz ein */
+    align-content: flex-start; /* Icons oben beginnen */
+    margin-bottom: 50px; /* Platz für Taskleiste */
+}
+
+.app {
+    width: 100px;
+    height: 120px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.app:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .app-icon {
-  font-size: 1.2rem;
-  padding: 10px;
-  cursor: pointer;
+    font-size: 48px; /* Für Emojis */
+    margin-bottom: 8px;
 }
 
-.clock {
-  margin-left: auto;
-  padding: 10px;
+.app-name {
+    font-size: 0.9em;
+    word-break: break-word;
 }
 
-.start-menu {
-  position: fixed;
-  bottom: 50px;
-  left: 10px;
-  background: rgba(31, 41, 55, 0.95);
-  border-radius: 10px;
-  padding: 10px;
+/* Fenster für interne Apps */
+#window-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 50px); /* Platz für Taskleiste */
+    pointer-events: none; /* Klicks durchlassen, wenn keine Fenster aktiv */
 }
 
-.start-menu.hide {
-  display: none;
+.app-window {
+    position: absolute;
+    background-color: #2d2d2d;
+    border: 1px solid #555;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Verhindert, dass Inhalt überläuft */
+    pointer-events: auto; /* Klicks im Fenster zulassen */
+    resize: both; /* Größenänderung erlauben */
+    min-width: 250px;
+    min-height: 150px;
 }
 
-.start-menu-app {
-  padding: 8px;
-  cursor: pointer;
-}
-
-.start-menu-app:hover {
-  background: rgba(59, 130, 246, 0.2);
-}
-
-.window {
-  position: absolute;
-  background: linear-gradient(145deg, #1f2937, #111827);
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
-  border-radius: 20px;
-  display: none;
-  overflow: hidden;
-  transition: all 0.4s ease;
-}
-
-.window.show {
-  display: block;
-  animation: popInGlow 0.4s ease;
-}
-
-.window.hide {
-  display: none;
+.app-window.hidden {
+    display: none;
 }
 
 .window-header {
-  background: rgba(0, 0, 0, 0.2);
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    background-color: #3a3a3a;
+    padding: 8px 12px;
+    cursor: move; /* Zum Verschieben */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none; /* Textauswahl im Header verhindern */
 }
 
 .window-title {
-  color: #e5e7eb;
+    font-weight: 500;
 }
 
-.window-controls {
-  display: flex;
-  gap: 10px;
+.window-close-button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
-.window-control {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
+.window-close-button:hover {
+    background: #c0392b;
 }
 
-.window-control.minimize { background: #facc15; }
-.window-control.maximize { background: #22c55e; }
-.window-control.close { background: #ef4444; }
-
-.window-control::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
+.window-body {
+    padding: 15px;
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex; /* Für den Rechner-Layout */
+    flex-direction: column; /* Für den Rechner-Layout */
 }
 
-.window-control:hover::after {
-  opacity: 1;
+/* Notizen App spezifisch */
+#notes-textarea {
+    width: 100%;
+    height: 100%; /* Nimmt den verfügbaren Platz im Fenster-Body ein */
+    background-color: #333;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 10px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    resize: none; /* Größenänderung über das Fenster steuern */
+    min-height: 100px; /* Mindesthöhe für die Textarea */
 }
 
-.window-content {
-  padding: 20px;
+/* Rechner App spezifisch */
+#calculator {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%; /* Passt sich der Fensterbreite an */
+    max-width: 300px; /* Maximale Breite, um UI kompakt zu halten */
+    margin: auto; /* Zentrieren im Fenster-Body */
 }
 
-.app-links {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+#calc-display {
+    background-color: #1e1e1e;
+    color: white;
+    text-align: right;
+    padding: 15px;
+    font-size: 2em;
+    border-radius: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.app-link {
-  display: flex;
-  align-items: center;
-  padding: 16px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.05);
-  text-decoration: none;
-  color: #e5e7eb;
-  transition: all 0.3s ease;
+#calc-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
 }
 
-.app-link:hover {
-  background: rgba(59, 130, 246, 0.1);
-  transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.2);
+.calc-btn, #calc-equals, #calc-clear {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
-.app-link-icon {
-  font-size: 1.5rem;
-  margin-right: 10px;
+.calc-btn:hover, #calc-equals:hover, #calc-clear:hover {
+    background-color: #666;
 }
 
-.app-link-info h4 {
-  margin: 0;
-  font-size: 1.1rem;
+.calc-btn.op, #calc-equals.op, #calc-clear.op {
+    background-color: #f39c12; /* Orange für Operatoren */
+}
+.calc-btn.op:hover, #calc-equals.op:hover, #calc-clear.op:hover {
+    background-color: #e67e22;
 }
 
-.app-link-info p {
-  margin: 5px 0 0;
-  font-size: 0.9rem;
-  color: #9ca3af;
-}
 
-@keyframes popInGlow {
-  0% { transform: scale(0.9); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+/* Hilfsklassen */
+.hidden {
+    display: none !important; /* Wichtig, um Sichtbarkeit zu erzwingen */
+    opacity: 0;
+    transform: scale(0.95) translateY(10px); /* Kleine Animation beim Verstecken */
 }
