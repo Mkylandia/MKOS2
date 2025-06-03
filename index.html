@@ -1,67 +1,319 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MK OS</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MKOS V3 – Enhanced Edition</title>
+  <!-- Verknüpfung zur externen CSS-Datei -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div id="desktop">
-        <div id="taskbar">
-            <div id="start-menu-button">
-                <span class="material-icons">grid_view</span>
-            </div>
-            <div id="running-apps"></div>
-            <div id="system-tray">
-                <div id="clock"></div>
-                <div id="date-display"></div>
-            </div>
-        </div>
-
-        <div id="start-menu" class="hidden">
-            <input type="text" id="search-bar" placeholder="Suche...">
-            <div id="start-menu-apps">
-                </div>
-        </div>
-
-        <div id="app-grid">
-            </div>
-
-        <div id="window-container">
-            <div id="notes-app-window" class="app-window hidden">
-                <div class="window-header">
-                    <span class="window-title">📝 Notizen</span>
-                    <button class="window-close-button" data-window="notes-app-window">✕</button>
-                </div>
-                <div class="window-body">
-                    <textarea id="notes-textarea" placeholder="Schreibe deine Notizen hier..."></textarea>
-                </div>
-            </div>
-
-            <div id="calculator-app-window" class="app-window hidden">
-                <div class="window-header">
-                    <span class="window-title">🧮 Rechner</span>
-                    <button class="window-close-button" data-window="calculator-app-window">✕</button>
-                </div>
-                <div class="window-body">
-                    <div id="calculator">
-                        <div id="calc-display">0</div>
-                        <div id="calc-buttons">
-                            <button class="calc-btn">7</button><button class="calc-btn">8</button><button class="calc-btn">9</button><button class="calc-btn op">/</button>
-                            <button class="calc-btn">4</button><button class="calc-btn">5</button><button class="calc-btn">6</button><button class="calc-btn op">*</button>
-                            <button class="calc-btn">1</button><button class="calc-btn">2</button><button class="calc-btn">3</button><button class="calc-btn op">-</button>
-                            <button class="calc-btn">0</button><button class="calc-btn">.</button><button id="calc-equals" class="op">=</button><button class="calc-btn op">+</button>
-                            <button id="calc-clear" class="op">C</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+  <div class="desktop">
+    <!-- Desktop Icons -->
+    <div class="floating-icons">
+      <div class="desktop-icon" onclick="openApp('youtube')">
+        <div class="desktop-icon-image youtube">📺</div>
+        <div class="desktop-icon-label">YouTube</div>
+      </div>
+      <div class="desktop-icon" onclick="openApp('telegram')">
+        <div class="desktop-icon-image telegram">✈️</div>
+        <div class="desktop-icon-label">Telegram</div>
+      </div>
+      <div class="desktop-icon" onclick="openApp('instagram')">
+        <div class="desktop-icon-image instagram">📷</div>
+        <div class="desktop-icon-label">Instagram</div>
+      </div>
+      <div class="desktop-icon" onclick="openApp('crazygames')">
+        <div class="desktop-icon-image crazygames">🎮</div>
+        <div class="desktop-icon-label">CrazyGames</div>
+      </div>
+      <div class="desktop-icon" onclick="openApp('films1')">
+        <div class="desktop-icon-image films1">🎬</div>
+        <div class="desktop-icon-label">Films 1</div>
+      </div>
+      <div class="desktop-icon" onclick="openApp('films2')">
+        <div class="desktop-icon-image films2">🎭</div>
+        <div class="desktop-icon-label">Films 2</div>
+      </div>
+      <div class="desktop-icon" onclick="openApp('google')">
+        <div class="desktop-icon-image google">🔍</div>
+        <div class="desktop-icon-label">Google</div>
+      </div>
+      <div class="desktop-icon" onclick="openApp('twitter')">
+        <div class="desktop-icon-image twitter">🐦</div>
+        <div class="desktop-icon-label">Twitter</div>
+      </div>
+      <div class="desktop-icon" onclick="openApp('github')">
+        <div class="desktop-icon-image github">🐙</div>
+        <div class="desktop-icon-label">GitHub</div>
+      </div>
+      <div class="desktop-icon" onclick="openApp('stackoverflow')">
+        <div class="desktop-icon-image stackoverflow">🧱</div>
+        <div class="desktop-icon-label">StackOverflow</div>
+      </div>
+      <div class="desktop-icon" onclick="openApp('wikipedia')">
+        <div class="desktop-icon-image wikipedia">📚</div>
+        <div class="desktop-icon-label">Wikipedia</div>
+      </div>
+      <div class="desktop-icon" onclick="openApp('calculator')">
+        <div class="desktop-icon-image calculator">🧮</div>
+        <div class="desktop-icon-label">Rechner</div>
+      </div>
+      <div class="desktop-icon" onclick="openApp('notes')">
+        <div class="desktop-icon-image notes">📝</div>
+        <div class="desktop-icon-label">Notizen</div>
+      </div>
     </div>
-    <script src="script.js"></script>
+
+    <!-- Widgets -->
+    <div class="desktop-widgets">
+      <div class="widget time-widget">
+        <h3 id="current-time">--:--</h3>
+        <p id="current-date">Loading...</p>
+      </div>
+      <div class="widget weather-widget">
+        <h3>🌤️ Wetter</h3>
+        <p class="weather-temp">22°C – Teilweise bewölkt</p>
+        <p class="weather-location">Heidenheim, Deutschland</p>
+      </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+      <div class="app-icon start-button" onclick="showStartMenu()">🏠</div>
+      <div class="app-icon youtube" onclick="openApp('youtube')">📺</div>
+      <div class="app-icon telegram" onclick="openApp('telegram')">✈️</div>
+      <div class="app-icon instagram" onclick="openApp('instagram')">📷</div>
+      <div class="app-icon crazygames" onclick="openApp('crazygames')">🎮</div>
+      <div class="app-icon films1" onclick="openApp('films1')">🎬</div>
+      <div class="app-icon films2" onclick="openApp('films2')">🎭</div>
+      <div class="app-icon google" onclick="openApp('google')">🔍</div>
+      <div class="app-icon twitter" onclick="openApp('twitter')">🐦</div>
+      <div class="app-icon github" onclick="openApp('github')">🐙</div>
+      <div class="app-icon stackoverflow" onclick="openApp('stackoverflow')">🧱</div>
+      <div class="app-icon wikipedia" onclick="openApp('wikipedia')">📚</div>
+      <div class="app-icon calculator" onclick="openApp('calculator')">🧮</div>
+      <div class="app-icon notes" onclick="openApp('notes')">📝</div>
+    </div>
+  </div>
+
+  <!-- App-Fenster -->
+
+  <!-- YouTube -->
+  <div id="youtube-window" class="window">
+    <div class="window-header">
+      <div class="window-title">📺 YouTube</div>
+      <div class="window-controls">
+        <div class="window-control minimize" onclick="minimizeApp('youtube')">−</div>
+        <div class="window-control maximize" onclick="toggleMaximize('youtube')">□</div>
+        <div class="window-control close" onclick="closeApp('youtube')">×</div>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="app-links">
+        <a href="https://www.youtube.com" target="_blank" class="app-link">
+          <div class="app-link-icon">🌐</div>
+          <div class="app-link-info">
+            <h4>YouTube öffnen</h4>
+            <p>YouTube im Browser öffnen</p>
+          </div>
+        </a>
+        <a href="https://www.youtube.com/trending" target="_blank" class="app-link">
+          <div class="app-link-icon">🔥</div>
+          <div class="app-link-info">
+            <h4>Trending</h4>
+            <p>Beliebte Videos entdecken</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Telegram -->
+  <div id="telegram-window" class="window">
+    <div class="window-header">
+      <div class="window-title">✈️ Telegram</div>
+      <div class="window-controls">
+        <div class="window-control minimize" onclick="minimizeApp('telegram')">−</div>
+        <div class="window-control maximize" onclick="toggleMaximize('telegram')">□</div>
+        <div class="window-control close" onclick="closeApp('telegram')">×</div>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="app-links">
+        <a href="https://web.telegram.org" target="_blank" class="app-link">
+          <div class="app-link-icon">🌐</div>
+          <div class="app-link-info">
+            <h4>Telegram Web</h4>
+            <p>Browser-Version öffnen</p>
+          </div>
+        </a>
+        <a href="https://desktop.telegram.org" target="_blank" class="app-link">
+          <div class="app-link-icon">💻</div>
+          <div class="app-link-info">
+            <h4>Desktop App</h4>
+            <p>Desktop-Version herunterladen</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Instagram -->
+  <div id="instagram-window" class="window">
+    <div class="window-header">
+      <div class="window-title">📷 Instagram</div>
+      <div class="window-controls">
+        <div class="window-control minimize" onclick="minimizeApp('instagram')">−</div>
+        <div class="window-control maximize" onclick="toggleMaximize('instagram')">□</div>
+        <div class="window-control close" onclick="closeApp('instagram')">×</div>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="app-links">
+        <a href="https://www.instagram.com" target="_blank" class="app-link">
+          <div class="app-link-icon">📱</div>
+          <div class="app-link-info">
+            <h4>Instagram Web</h4>
+            <p>Browser-Version öffnen</p>
+          </div>
+        </a>
+        <a href="https://www.instagram.com/explore/" target="_blank" class="app-link">
+          <div class="app-link-icon">🔍</div>
+          <div class="app-link-info">
+            <h4>Entdecken</h4>
+            <p>Neue Inhalte anzeigen</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CrazyGames -->
+  <div id="crazygames-window" class="window">
+    <div class="window-header">
+      <div class="window-title">🎮 CrazyGames</div>
+      <div class="window-controls">
+        <div class="window-control minimize" onclick="minimizeApp('crazygames')">−</div>
+        <div class="window-control maximize" onclick="toggleMaximize('crazygames')">□</div>
+        <div class="window-control close" onclick="closeApp('crazygames')">×</div>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="loading">Lade CrazyGames…</div>
+      <iframe src="https://www.crazygames.com" title="CrazyGames" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';"></iframe>
+    </div>
+  </div>
+
+  <!-- Films 1 -->
+  <div id="films1-window" class="window">
+    <div class="window-header">
+      <div class="window-title">🎬 Films 1</div>
+      <div class="window-controls">
+        <div class="window-control minimize" onclick="minimizeApp('films1')">−</div>
+        <div class="window-control maximize" onclick="toggleMaximize('films1')">□</div>
+        <div class="window-control close" onclick="closeApp('films1')">×</div>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="loading">Lade Films…</div>
+      <iframe src="https://mkylandia.github.io/Films/" title="Films 1" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';"></iframe>
+    </div>
+  </div>
+
+  <!-- Films 2 -->
+  <div id="films2-window" class="window">
+    <div class="window-header">
+      <div class="window-title">🎭 Films 2</div>
+      <div class="window-controls">
+        <div class="window-control minimize" onclick="minimizeApp('films2')">−</div>
+        <div class="window-control maximize" onclick="toggleMaximize('films2')">□</div>
+        <div class="window-control close" onclick="closeApp('films2')">×</div>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="loading">Lade Films 2…</div>
+      <iframe src="https://mkylandia.github.io/Films2/" title="Films 2" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';"></iframe>
+    </div>
+  </div>
+
+  <!-- Google Dashboard -->
+  <div id="google-window" class="window">
+    <div class="window-header">
+      <div class="window-title">🔍 Google Dashboard</div>
+      <div class="window-controls">
+        <div class="window-control minimize" onclick="minimizeApp('google')">−</div>
+        <div class="window-control maximize" onclick="toggleMaximize('google')">□</div>
+        <div class="window-control close" onclick="closeApp('google')">×</div>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="app-links">
+        <a href="https://www.google.com" target="_blank" class="app-link">
+          <div class="app-link-icon">🔍</div>
+          <div class="app-link-info">
+            <h4>Google Suche</h4>
+            <p>Suche im Web</p>
+          </div>
+        </a>
+        <a href="https://mail.google.com" target="_blank" class="app-link">
+          <div class="app-link-icon">📧</div>
+          <div class="app-link-info">
+            <h4>Gmail</h4>
+            <p>E-Mails verwalten</p>
+          </div>
+        </a>
+        <a href="https://drive.google.com" target="_blank" class="app-link">
+          <div class="app-link-icon">💾</div>
+          <div class="app-link-info">
+            <h4>Google Drive</h4>
+            <p>Cloud-Speicher</p>
+          </div>
+        </a>
+        <a href="https://calendar.google.com" target="_blank" class="app-link">
+          <div class="app-link-icon">📅</div>
+          <div class="app-link-info">
+            <h4>Kalender</h4>
+            <p>Termine verwalten</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Twitter -->
+  <div id="twitter-window" class="window">
+    <div class="window-header">
+      <div class="window-title">🐦 Twitter</div>
+      <div class="window-controls">
+        <div class="window-control minimize" onclick="minimizeApp('twitter')">−</div>
+        <div class="window-control maximize" onclick="toggleMaximize('twitter')">□</div>
+        <div class="window-control close" onclick="closeApp('twitter')">×</div>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="app-links">
+        <a href="https://twitter.com" target="_blank" class="app-link">
+          <div class="app-link-icon">🐦</div>
+          <div class="app-link-info">
+            <h4>Twitter / X</h4>
+            <p>Social Media Platform</p>
+          </div>
+        </a>
+        <a href="https://twitter.com/explore" target="_blank" class="app-link">
+          <div class="app-link-icon">🔍</div>
+          <div class="app-link-info">
+            <h4>Erkunden</h4>
+            <p>Trends & Neuigkeiten</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Weitere App-Fenster (GitHub, StackOverflow, Wikipedia, Rechner, Notizen) analog -->
+
+  <!-- Verknüpfung zur externen JS-Datei -->
+  <script src="script.js"></script>
 </body>
 </html>
