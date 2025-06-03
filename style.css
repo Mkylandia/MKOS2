@@ -1,10 +1,11 @@
-/* Basis-Reset & Variablen */
+/* =========================================
+   Basis-Reset & Farbliche Variablen
+   ========================================= */
 :root {
   --primary-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --glass-bg: rgba(255, 255, 255, 0.1);
   --glass-border: rgba(255, 255, 255, 0.2);
   --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.8);
   --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.1);
   --shadow-medium: 0 12px 40px rgba(0, 0, 0, 0.2);
   --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.3);
@@ -27,18 +28,23 @@ body {
   position: relative;
 }
 
+/* Feinere Gitter‐Textur im Hintergrund */
 body::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url("data:image/svg+xml,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>\
+<defs><pattern id='grid' width='20' height='20' patternUnits='userSpaceOnUse'>\
+<path d='M 20 0 L 0 0 0 20' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='0.5'/>\
+</pattern></defs>\
+<rect width='100' height='100' fill='url(%23grid)'/></svg>");
   pointer-events: none;
 }
 
-/* Desktop-Fläche */
+/* =========================================
+   Desktop-Fläche
+   ========================================= */
 .desktop {
   position: relative;
   width: 100%;
@@ -47,7 +53,9 @@ body::before {
   flex-direction: column;
 }
 
-/* Floating Icons */
+/* =========================================
+   Floating Desktop Icons (oben links)
+   ========================================= */
 .floating-icons {
   position: absolute;
   top: 40px;
@@ -96,10 +104,8 @@ body::before {
 .desktop-icon-image::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
   transition: left 0.5s;
 }
@@ -116,7 +122,9 @@ body::before {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Widgets */
+/* =========================================
+   Widgets oben rechts
+   ========================================= */
 .desktop-widgets {
   position: absolute;
   top: 40px;
@@ -144,7 +152,7 @@ body::before {
 }
 
 .time-widget {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.3), rgba(118, 75, 162, 0.3));
+  background: linear-gradient(135deg, rgba(102,126,234,0.3), rgba(118,75,162,0.3));
   text-align: center;
   color: var(--text-primary);
 }
@@ -162,7 +170,7 @@ body::before {
 }
 
 .weather-widget {
-  background: linear-gradient(135deg, rgba(116, 185, 255, 0.3), rgba(9, 132, 227, 0.3));
+  background: linear-gradient(135deg, rgba(116,185,255,0.3), rgba(9,132,227,0.3));
   color: var(--text-primary);
   text-align: center;
 }
@@ -178,7 +186,9 @@ body::before {
   margin: 4px 0;
 }
 
-/* Taskbar */
+/* =========================================
+   Taskbar (unten mittig)
+   ========================================= */
 .taskbar {
   position: fixed;
   bottom: 20px;
@@ -225,8 +235,8 @@ body::before {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
+  width: 6px;
+  height: 6px;
   background: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
   opacity: 0;
@@ -237,29 +247,33 @@ body::before {
   opacity: 1;
 }
 
-/* App-spezifische Farben */
-.youtube { background: linear-gradient(135deg, #ff0000, #cc0000); }
-.telegram { background: linear-gradient(135deg, #0088cc, #005580); }
-.instagram { background: linear-gradient(135deg, #e4405f, #833ab4); }
-.crazygames { background: linear-gradient(135deg, #ff6b35, #f7931e); }
-.films1 { background: linear-gradient(135deg, #2c3e50, #34495e); }
-.films2 { background: linear-gradient(135deg, #8e44ad, #3498db); }
-.google { background: linear-gradient(135deg, #4285f4, #34a853); }
-.twitter { background: linear-gradient(135deg, #1da1f2, #0d8ddb); }
-.github { background: linear-gradient(135deg, #333333, #6e5494); }
+/* =========================================
+   App-spezifische Farbverläufe
+   ========================================= */
+.youtube       { background: linear-gradient(135deg, #ff0000, #cc0000); }
+.telegram      { background: linear-gradient(135deg, #0088cc, #005580); }
+.instagram     { background: linear-gradient(135deg, #e4405f, #833ab4); }
+.crazygames    { background: linear-gradient(135deg, #ff6b35, #f7931e); }
+.films1        { background: linear-gradient(135deg, #2c3e50, #34495e); }
+.films2        { background: linear-gradient(135deg, #8e44ad, #3498db); }
+.google        { background: linear-gradient(135deg, #4285f4, #34a853); }
+.twitter       { background: linear-gradient(135deg, #1da1f2, #0d8ddb); }
+.github        { background: linear-gradient(135deg, #333333, #6e5494); }
 .stackoverflow { background: linear-gradient(135deg, #f48024, #e06f13); }
-.wikipedia { background: linear-gradient(135deg, #000000, #666666); }
-.calculator { background: linear-gradient(135deg, #4caf50, #087f23); }
-.notes { background: linear-gradient(135deg, #ffeb3b, #fbc02d); }
-.start-button { background: linear-gradient(135deg, #667eea, #764ba2); }
+.wikipedia     { background: linear-gradient(135deg, #000000, #666666); }
+.calculator    { background: linear-gradient(135deg, #4caf50, #087f23); }
+.notes         { background: linear-gradient(135deg, #ffeb3b, #fbc02d); }
+.start-button  { background: linear-gradient(135deg, #667eea, #764ba2); }
 
-/* Fenster */
+/* =========================================
+   Fenster-Layout & Animationen
+   ========================================= */
 .window {
   position: absolute;
   display: none;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
-  border-radius: 16px;
+  border-radius: var(--border-radius);
   box-shadow: var(--shadow-heavy);
   border: 1px solid rgba(255, 255, 255, 0.2);
   min-width: 400px;
@@ -288,13 +302,13 @@ body::before {
 }
 
 .window-header {
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.02));
-  padding: 16px 20px;
+  background: linear-gradient(135deg, rgba(0,0,0,0.05), rgba(0,0,0,0.02));
+  padding: 14px 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: move;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
   backdrop-filter: blur(10px);
 }
 
@@ -329,21 +343,14 @@ body::before {
   transform: scale(1.2);
 }
 
-.window-control.minimize {
-  background: #FFD500;
-}
-
-.window-control.maximize {
-  background: #00CA4E;
-}
-
-.window-control.close {
-  background: #ff5f56;
-}
+.window-control.minimize { background: #FFD500; }
+.window-control.maximize { background: #00CA4E; }
+.window-control.close    { background: #ff5f56; }
 
 .window-content {
-  height: calc(100% - 60px);
+  height: calc(100% - 52px);
   overflow: auto;
+  position: relative;
 }
 
 .window-content iframe {
@@ -352,7 +359,34 @@ body::before {
   border: none;
 }
 
-/* App-Links Stil */
+/* Fahrstuhl‐Animation beim Laden von <iframe> */
+.window-content .loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 14px;
+  color: #666;
+}
+
+.window-content .loading::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-top: 2px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* =========================================
+   App-Links (Listen in jedem Fenster)
+   ========================================= */
 .app-links {
   padding: 20px;
   display: grid;
@@ -373,7 +407,7 @@ body::before {
 
 .app-link:hover {
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.08));
-  transform: translateX(8px);
+  transform: translateX(6px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
@@ -396,7 +430,9 @@ body::before {
   opacity: 0.7;
 }
 
-/* Responsive Design */
+/* =========================================
+   Responsive Anpassungen (Mobile)
+   ========================================= */
 @media (max-width: 768px) {
   .floating-icons {
     grid-template-columns: repeat(3, 1fr);
@@ -420,29 +456,9 @@ body::before {
     height: 48px;
     font-size: 20px;
   }
-}
 
-/* Loading Animation */
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
-  font-size: 14px;
-  color: #666;
-}
-
-.loading::before {
-  content: '';
-  width: 20px;
-  height: 20px;
-  border: 2px solid #ddd;
-  border-top: 2px solid #667eea;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-right: 10px;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
+  .window {
+    min-width: 90vw;
+    min-height: 60vh;
+  }
 }
