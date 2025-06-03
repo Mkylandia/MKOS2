@@ -2,111 +2,120 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MKOS V3 – Enhanced Edition</title>
-  <!-- Verknüpfung zur externen CSS-Datei -->
+  <!-- Verknüpfe die externe CSS-Datei -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="desktop">
-    <!-- Desktop Icons -->
+    <!-- ================================
+         Floating Desktop Icons
+         ================================ -->
     <div class="floating-icons">
-      <div class="desktop-icon" onclick="openApp('youtube')">
+      <div class="desktop-icon" data-app="youtube">
         <div class="desktop-icon-image youtube">📺</div>
         <div class="desktop-icon-label">YouTube</div>
       </div>
-      <div class="desktop-icon" onclick="openApp('telegram')">
+      <div class="desktop-icon" data-app="telegram">
         <div class="desktop-icon-image telegram">✈️</div>
         <div class="desktop-icon-label">Telegram</div>
       </div>
-      <div class="desktop-icon" onclick="openApp('instagram')">
+      <div class="desktop-icon" data-app="instagram">
         <div class="desktop-icon-image instagram">📷</div>
         <div class="desktop-icon-label">Instagram</div>
       </div>
-      <div class="desktop-icon" onclick="openApp('crazygames')">
+      <div class="desktop-icon" data-app="crazygames">
         <div class="desktop-icon-image crazygames">🎮</div>
         <div class="desktop-icon-label">CrazyGames</div>
       </div>
-      <div class="desktop-icon" onclick="openApp('films1')">
+      <div class="desktop-icon" data-app="films1">
         <div class="desktop-icon-image films1">🎬</div>
         <div class="desktop-icon-label">Films 1</div>
       </div>
-      <div class="desktop-icon" onclick="openApp('films2')">
+      <div class="desktop-icon" data-app="films2">
         <div class="desktop-icon-image films2">🎭</div>
         <div class="desktop-icon-label">Films 2</div>
       </div>
-      <div class="desktop-icon" onclick="openApp('google')">
+      <div class="desktop-icon" data-app="google">
         <div class="desktop-icon-image google">🔍</div>
         <div class="desktop-icon-label">Google</div>
       </div>
-      <div class="desktop-icon" onclick="openApp('twitter')">
+      <div class="desktop-icon" data-app="twitter">
         <div class="desktop-icon-image twitter">🐦</div>
         <div class="desktop-icon-label">Twitter</div>
       </div>
-      <div class="desktop-icon" onclick="openApp('github')">
+      <div class="desktop-icon" data-app="github">
         <div class="desktop-icon-image github">🐙</div>
         <div class="desktop-icon-label">GitHub</div>
       </div>
-      <div class="desktop-icon" onclick="openApp('stackoverflow')">
+      <div class="desktop-icon" data-app="stackoverflow">
         <div class="desktop-icon-image stackoverflow">🧱</div>
         <div class="desktop-icon-label">StackOverflow</div>
       </div>
-      <div class="desktop-icon" onclick="openApp('wikipedia')">
+      <div class="desktop-icon" data-app="wikipedia">
         <div class="desktop-icon-image wikipedia">📚</div>
         <div class="desktop-icon-label">Wikipedia</div>
       </div>
-      <div class="desktop-icon" onclick="openApp('calculator')">
+      <div class="desktop-icon" data-app="calculator">
         <div class="desktop-icon-image calculator">🧮</div>
         <div class="desktop-icon-label">Rechner</div>
       </div>
-      <div class="desktop-icon" onclick="openApp('notes')">
+      <div class="desktop-icon" data-app="notes">
         <div class="desktop-icon-image notes">📝</div>
         <div class="desktop-icon-label">Notizen</div>
       </div>
     </div>
 
-    <!-- Widgets -->
+    <!-- ================================
+         Widgets oben rechts
+         ================================ -->
     <div class="desktop-widgets">
       <div class="widget time-widget">
         <h3 id="current-time">--:--</h3>
-        <p id="current-date">Loading...</p>
+        <p id="current-date">Lade Datum…</p>
       </div>
       <div class="widget weather-widget">
         <h3>🌤️ Wetter</h3>
-        <p class="weather-temp">22°C – Teilweise bewölkt</p>
+        <p class="weather-temp">22 °C – Teilweise bewölkt</p>
         <p class="weather-location">Heidenheim, Deutschland</p>
       </div>
     </div>
 
-    <!-- Taskbar -->
+    <!-- ================================
+         Taskbar am unteren Rand
+         ================================ -->
     <div class="taskbar">
-      <div class="app-icon start-button" onclick="showStartMenu()">🏠</div>
-      <div class="app-icon youtube" onclick="openApp('youtube')">📺</div>
-      <div class="app-icon telegram" onclick="openApp('telegram')">✈️</div>
-      <div class="app-icon instagram" onclick="openApp('instagram')">📷</div>
-      <div class="app-icon crazygames" onclick="openApp('crazygames')">🎮</div>
-      <div class="app-icon films1" onclick="openApp('films1')">🎬</div>
-      <div class="app-icon films2" onclick="openApp('films2')">🎭</div>
-      <div class="app-icon google" onclick="openApp('google')">🔍</div>
-      <div class="app-icon twitter" onclick="openApp('twitter')">🐦</div>
-      <div class="app-icon github" onclick="openApp('github')">🐙</div>
-      <div class="app-icon stackoverflow" onclick="openApp('stackoverflow')">🧱</div>
-      <div class="app-icon wikipedia" onclick="openApp('wikipedia')">📚</div>
-      <div class="app-icon calculator" onclick="openApp('calculator')">🧮</div>
-      <div class="app-icon notes" onclick="openApp('notes')">📝</div>
+      <div class="app-icon start-button" id="start-button">🏠</div>
+      <div class="app-icon youtube" data-app="youtube">📺</div>
+      <div class="app-icon telegram" data-app="telegram">✈️</div>
+      <div class="app-icon instagram" data-app="instagram">📷</div>
+      <div class="app-icon crazygames" data-app="crazygames">🎮</div>
+      <div class="app-icon films1" data-app="films1">🎬</div>
+      <div class="app-icon films2" data-app="films2">🎭</div>
+      <div class="app-icon google" data-app="google">🔍</div>
+      <div class="app-icon twitter" data-app="twitter">🐦</div>
+      <div class="app-icon github" data-app="github">🐙</div>
+      <div class="app-icon stackoverflow" data-app="stackoverflow">🧱</div>
+      <div class="app-icon wikipedia" data-app="wikipedia">📚</div>
+      <div class="app-icon calculator" data-app="calculator">🧮</div>
+      <div class="app-icon notes" data-app="notes">📝</div>
     </div>
   </div>
 
-  <!-- App-Fenster -->
+  <!-- ================================
+       App-Fenster (YouTube, Telegram, Instagram, …)
+       Jeder <div id="xyz-window"> muss in script.js referenziert werden
+       ================================ -->
 
-  <!-- YouTube -->
+  <!-- YouTube-Fenster -->
   <div id="youtube-window" class="window">
     <div class="window-header">
       <div class="window-title">📺 YouTube</div>
       <div class="window-controls">
-        <div class="window-control minimize" onclick="minimizeApp('youtube')">−</div>
-        <div class="window-control maximize" onclick="toggleMaximize('youtube')">□</div>
-        <div class="window-control close" onclick="closeApp('youtube')">×</div>
+        <div class="window-control minimize" data-action="minimize" data-app="youtube">−</div>
+        <div class="window-control maximize" data-action="toggleMaximize" data-app="youtube">□</div>
+        <div class="window-control close" data-action="close" data-app="youtube">×</div>
       </div>
     </div>
     <div class="window-content">
@@ -129,14 +138,14 @@
     </div>
   </div>
 
-  <!-- Telegram -->
+  <!-- Telegram-Fenster -->
   <div id="telegram-window" class="window">
     <div class="window-header">
       <div class="window-title">✈️ Telegram</div>
       <div class="window-controls">
-        <div class="window-control minimize" onclick="minimizeApp('telegram')">−</div>
-        <div class="window-control maximize" onclick="toggleMaximize('telegram')">□</div>
-        <div class="window-control close" onclick="closeApp('telegram')">×</div>
+        <div class="window-control minimize" data-action="minimize" data-app="telegram">−</div>
+        <div class="window-control maximize" data-action="toggleMaximize" data-app="telegram">□</div>
+        <div class="window-control close" data-action="close" data-app="telegram">×</div>
       </div>
     </div>
     <div class="window-content">
@@ -159,14 +168,14 @@
     </div>
   </div>
 
-  <!-- Instagram -->
+  <!-- Instagram-Fenster -->
   <div id="instagram-window" class="window">
     <div class="window-header">
       <div class="window-title">📷 Instagram</div>
       <div class="window-controls">
-        <div class="window-control minimize" onclick="minimizeApp('instagram')">−</div>
-        <div class="window-control maximize" onclick="toggleMaximize('instagram')">□</div>
-        <div class="window-control close" onclick="closeApp('instagram')">×</div>
+        <div class="window-control minimize" data-action="minimize" data-app="instagram">−</div>
+        <div class="window-control maximize" data-action="toggleMaximize" data-app="instagram">□</div>
+        <div class="window-control close" data-action="close" data-app="instagram">×</div>
       </div>
     </div>
     <div class="window-content">
@@ -189,62 +198,62 @@
     </div>
   </div>
 
-  <!-- CrazyGames -->
+  <!-- CrazyGames-Fenster -->
   <div id="crazygames-window" class="window">
     <div class="window-header">
       <div class="window-title">🎮 CrazyGames</div>
       <div class="window-controls">
-        <div class="window-control minimize" onclick="minimizeApp('crazygames')">−</div>
-        <div class="window-control maximize" onclick="toggleMaximize('crazygames')">□</div>
-        <div class="window-control close" onclick="closeApp('crazygames')">×</div>
+        <div class="window-control minimize" data-action="minimize" data-app="crazygames">−</div>
+        <div class="window-control maximize" data-action="toggleMaximize" data-app="crazygames">□</div>
+        <div class="window-control close" data-action="close" data-app="crazygames">×</div>
       </div>
     </div>
     <div class="window-content">
       <div class="loading">Lade CrazyGames…</div>
-      <iframe src="https://www.crazygames.com" title="CrazyGames" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';"></iframe>
+      <iframe src="https://www.crazygames.com" title="CrazyGames" style="display: none;"></iframe>
     </div>
   </div>
 
-  <!-- Films 1 -->
+  <!-- Films 1-Fenster -->
   <div id="films1-window" class="window">
     <div class="window-header">
       <div class="window-title">🎬 Films 1</div>
       <div class="window-controls">
-        <div class="window-control minimize" onclick="minimizeApp('films1')">−</div>
-        <div class="window-control maximize" onclick="toggleMaximize('films1')">□</div>
-        <div class="window-control close" onclick="closeApp('films1')">×</div>
+        <div class="window-control minimize" data-action="minimize" data-app="films1">−</div>
+        <div class="window-control maximize" data-action="toggleMaximize" data-app="films1">□</div>
+        <div class="window-control close" data-action="close" data-app="films1">×</div>
       </div>
     </div>
     <div class="window-content">
-      <div class="loading">Lade Films…</div>
-      <iframe src="https://mkylandia.github.io/Films/" title="Films 1" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';"></iframe>
+      <div class="loading">Lade Films 1…</div>
+      <iframe src="https://mkylandia.github.io/Films/" title="Films 1" style="display: none;"></iframe>
     </div>
   </div>
 
-  <!-- Films 2 -->
+  <!-- Films 2-Fenster -->
   <div id="films2-window" class="window">
     <div class="window-header">
       <div class="window-title">🎭 Films 2</div>
       <div class="window-controls">
-        <div class="window-control minimize" onclick="minimizeApp('films2')">−</div>
-        <div class="window-control maximize" onclick="toggleMaximize('films2')">□</div>
-        <div class="window-control close" onclick="closeApp('films2')">×</div>
+        <div class="window-control minimize" data-action="minimize" data-app="films2">−</div>
+        <div class="window-control maximize" data-action="toggleMaximize" data-app="films2">□</div>
+        <div class="window-control close" data-action="close" data-app="films2">×</div>
       </div>
     </div>
     <div class="window-content">
       <div class="loading">Lade Films 2…</div>
-      <iframe src="https://mkylandia.github.io/Films2/" title="Films 2" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none';"></iframe>
+      <iframe src="https://mkylandia.github.io/Films2/" title="Films 2" style="display: none;"></iframe>
     </div>
   </div>
 
-  <!-- Google Dashboard -->
+  <!-- Google Dashboard-Fenster -->
   <div id="google-window" class="window">
     <div class="window-header">
       <div class="window-title">🔍 Google Dashboard</div>
       <div class="window-controls">
-        <div class="window-control minimize" onclick="minimizeApp('google')">−</div>
-        <div class="window-control maximize" onclick="toggleMaximize('google')">□</div>
-        <div class="window-control close" onclick="closeApp('google')">×</div>
+        <div class="window-control minimize" data-action="minimize" data-app="google">−</div>
+        <div class="window-control maximize" data-action="toggleMaximize" data-app="google">□</div>
+        <div class="window-control close" data-action="close" data-app="google">×</div>
       </div>
     </div>
     <div class="window-content">
@@ -281,14 +290,14 @@
     </div>
   </div>
 
-  <!-- Twitter -->
+  <!-- Twitter-Fenster -->
   <div id="twitter-window" class="window">
     <div class="window-header">
       <div class="window-title">🐦 Twitter</div>
       <div class="window-controls">
-        <div class="window-control minimize" onclick="minimizeApp('twitter')">−</div>
-        <div class="window-control maximize" onclick="toggleMaximize('twitter')">□</div>
-        <div class="window-control close" onclick="closeApp('twitter')">×</div>
+        <div class="window-control minimize" data-action="minimize" data-app="twitter">−</div>
+        <div class="window-control maximize" data-action="toggleMaximize" data-app="twitter">□</div>
+        <div class="window-control close" data-action="close" data-app="twitter">×</div>
       </div>
     </div>
     <div class="window-content">
@@ -311,9 +320,143 @@
     </div>
   </div>
 
-  <!-- Weitere App-Fenster (GitHub, StackOverflow, Wikipedia, Rechner, Notizen) analog -->
+  <!-- GitHub-Fenster -->
+  <div id="github-window" class="window">
+    <div class="window-header">
+      <div class="window-title">🐙 GitHub</div>
+      <div class="window-controls">
+        <div class="window-control minimize" data-action="minimize" data-app="github">−</div>
+        <div class="window-control maximize" data-action="toggleMaximize" data-app="github">□</div>
+        <div class="window-control close" data-action="close" data-app="github">×</div>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="app-links">
+        <a href="https://github.com" target="_blank" class="app-link">
+          <div class="app-link-icon">🌐</div>
+          <div class="app-link-info">
+            <h4>GitHub Startseite</h4>
+            <p>Repositorys durchsuchen</p>
+          </div>
+        </a>
+        <a href="https://github.com/explore" target="_blank" class="app-link">
+          <div class="app-link-icon">🔍</div>
+          <div class="app-link-info">
+            <h4>Explore</h4>
+            <p>Trending Projekte</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 
-  <!-- Verknüpfung zur externen JS-Datei -->
+  <!-- StackOverflow-Fenster -->
+  <div id="stackoverflow-window" class="window">
+    <div class="window-header">
+      <div class="window-title">🧱 StackOverflow</div>
+      <div class="window-controls">
+        <div class="window-control minimize" data-action="minimize" data-app="stackoverflow">−</div>
+        <div class="window-control maximize" data-action="toggleMaximize" data-app="stackoverflow">□</div>
+        <div class="window-control close" data-action="close" data-app="stackoverflow">×</div>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="app-links">
+        <a href="https://stackoverflow.com" target="_blank" class="app-link">
+          <div class="app-link-icon">🌐</div>
+          <div class="app-link-info">
+            <h4>StackOverflow</h4>
+            <p>Fragen & Antworten</p>
+          </div>
+        </a>
+        <a href="https://stackoverflow.com/tags" target="_blank" class="app-link">
+          <div class="app-link-icon">🏷️</div>
+          <div class="app-link-info">
+            <h4>Tags</h4>
+            <p>Themen durchsuchen</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wikipedia-Fenster -->
+  <div id="wikipedia-window" class="window">
+    <div class="window-header">
+      <div class="window-title">📚 Wikipedia</div>
+      <div class="window-controls">
+        <div class="window-control minimize" data-action="minimize" data-app="wikipedia">−</div>
+        <div class="window-control maximize" data-action="toggleMaximize" data-app="wikipedia">□</div>
+        <div class="window-control close" data-action="close" data-app="wikipedia">×</div>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="app-links">
+        <a href="https://de.wikipedia.org" target="_blank" class="app-link">
+          <div class="app-link-icon">🌐</div>
+          <div class="app-link-info">
+            <h4>Wikipedia Deutsch</h4>
+            <p>Artikel durchsuchen</p>
+          </div>
+        </a>
+        <a href="https://en.wikipedia.org" target="_blank" class="app-link">
+          <div class="app-link-icon">🌐</div>
+          <div class="app-link-info">
+            <h4>Wikipedia Englisch</h4>
+            <p>Artikel durchsuchen</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rechner-Fenster -->
+  <div id="calculator-window" class="window">
+    <div class="window-header">
+      <div class="window-title">🧮 Rechner</div>
+      <div class="window-controls">
+        <div class="window-control minimize" data-action="minimize" data-app="calculator">−</div>
+        <div class="window-control maximize" data-action="toggleMaximize" data-app="calculator">□</div>
+        <div class="window-control close" data-action="close" data-app="calculator">×</div>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="app-links">
+        <a href="https://www.google.com/search?q=rechner" target="_blank" class="app-link">
+          <div class="app-link-icon">🌐</div>
+          <div class="app-link-info">
+            <h4>Google-Rechner</h4>
+            <p>Im Browser rechnen</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notizen-Fenster -->
+  <div id="notes-window" class="window">
+    <div class="window-header">
+      <div class="window-title">📝 Notizen</div>
+      <div class="window-controls">
+        <div class="window-control minimize" data-action="minimize" data-app="notes">−</div>
+        <div class="window-control maximize" data-action="toggleMaximize" data-app="notes">□</div>
+        <div class="window-control close" data-action="close" data-app="notes">×</div>
+      </div>
+    </div>
+    <div class="window-content">
+      <div class="app-links">
+        <a href="https://anotepad.com" target="_blank" class="app-link">
+          <div class="app-link-icon">📝</div>
+          <div class="app-link-info">
+            <h4>Online Notizen</h4>
+            <p>Einfaches Notiztool</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Verknüpfe die externe JavaScript-Datei -->
   <script src="script.js"></script>
 </body>
 </html>
