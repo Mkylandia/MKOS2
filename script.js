@@ -1,140 +1,194 @@
-// Diese JavaScript-Datei enthält alle Funktionen, um die Fenster zu öffnen, zu minimieren, zu maximieren und die Uhr zu aktualisieren.
+/**
+ * script.js
+ * Enthält alle Funktionen, um Fenster zu öffnen, zu minimieren, zu maximieren,
+ * Drag‐&‐Drop (Verschieben), sowie eine live‐Uhr oben rechts.
+ */
 
-// Variable, um den Zustand (normal/größe verändert) jedes Fensters zu speichern
-const windowState = {};
+const windowState = {}; // Speichert für jedes Fenster, ob es maximiert ist
 
 /**
- * Öffnet ein App-Fenster: setzt die Klasse "show" und zentriert das Fenster.
- * @param {string} id - Die ID des Fensters (z. B. "youtube", ohne "-window").
+ * Öffnet ein App-Fenster, wenn man auf Icon oder Taskbar klickt.
+ * @param {string} appId - z. B. "youtube", "telegram" etc.
  */
-function openApp(id) {
-  const win = document.getElementById(`${id}-window`);
+function openApp(appId) {
+  const win = document.getElementById(`${appId}-window`);
   if (!win) return;
 
-  // Fenster sichtbar machen
+  // Falls bereits offen, bringe es in den Vordergrund
+  if (win.classList.contains('show')) {
+    // Nur in den Vordergrund, ohne es neu zu positionieren
+    bringToFront(win);
+    return;
+  }
+
+  // Setze Klasse "show"
   win.classList.add('show');
 
-  // Standardgröße zurücksetzen
+  // Setze z-index so, dass dieses Fenster ganz vorn ist
+  bringToFront(win);
+
+  // Setze Initialgröße zurück, falls es vorher maximiert war
   win.style.width = '';
   win.style.height = '';
+  windowState[appId] = { maximized: false };
 
-  // Positionierung in die Mitte des Bildschirms
+  // Zentriere das Fenster beim ersten Öffnen
   win.style.top = `${(window.innerHeight - win.offsetHeight) / 2}px`;
   win.style.left = `${(window.innerWidth - win.offsetWidth) / 2}px`;
 
-  // Aktiv-Status in der Taskbar markieren
-  document.querySelectorAll(`.app-icon.${id}`).forEach(icon => {
-    icon.classList.add('active');
-  });
-
-  // Zustand speichern
-  windowState[id] = { maximized: false };
+  // Aktiviere den Taskbar-Icon-Indikator
+  document.querySelectorAll(`.app-icon.${appId}`).forEach(el => el.classList.add('active'));
 }
 
 /**
- * Minimiert das App-Fenster (versteckt es).
- * @param {string} id
+ * Minimiert/versteckt ein App-Fenster.
+ * @param {string} appId
  */
-function minimizeApp(id) {
-  const win = document.getElementById(`${id}-window`);
+function minimizeApp(appId) {
+  const win = document.getElementById(`${appId}-window`);
   if (!win) return;
   win.classList.remove('show');
-  document.querySelectorAll(`.app-icon.${id}`).forEach(icon => {
-    icon.classList.remove('active');
-  });
+  // Deaktiviere den Taskbar-Icon-Indikator
+  document.querySelectorAll(`.app-icon.${appId}`).forEach(el => el.classList.remove('active'));
 }
 
 /**
- * Schließt das App-Fenster (identisch mit Minimieren).
- * @param {string} id
+ * Schließt ein App-Fenster, identisch wie minimize.
+ * @param {string} appId
  */
-function closeApp(id) {
-  minimizeApp(id);
+function closeApp(appId) {
+  minimizeApp(appId);
 }
 
 /**
- * Maximiert oder setzt das App-Fenster in seine Normalgröße zurück.
- * @param {string} id
+ * Maximiert oder setzt ein Fenster auf Normalgröße zurück.
+ * @param {string} appId
  */
-function toggleMaximize(id) {
-  const win = document.getElementById(`${id}-window`);
+function toggleMaximize(appId) {
+  const win = document.getElementById(`${appId}-window`);
   if (!win) return;
 
-  if (!windowState[id]) windowState[id] = { maximized: false };
+  if (!windowState[appId]) windowState[appId] = { maximized: false };
 
-  if (!windowState[id].maximized) {
-    // Fenster maximieren
+  if (!windowState[appId].maximized) {
+    // Fenster maximieren: fast den ganzen Viewport nutzen
     win.style.top = '20px';
     win.style.left = '20px';
     win.style.width = `${window.innerWidth - 40}px`;
     win.style.height = `${window.innerHeight - 80}px`;
-    windowState[id].maximized = true;
+    windowState[appId].maximized = true;
   } else {
-    // Zurück zur Normalgröße: zentrieren und Standardmaße
+    // Zurück zur Normalgröße: zentrieren und CSS‐Standardgröße (leer = auto)
     win.style.width = '';
     win.style.height = '';
     win.style.top = `${(window.innerHeight - win.offsetHeight) / 2}px`;
     win.style.left = `${(window.innerWidth - win.offsetWidth) / 2}px`;
-    windowState[id].maximized = false;
+    windowState[appId].maximized = false;
   }
 }
 
 /**
- * Zeigt das Startmenü (hier als Platzhalterfunktion; du kannst an dieser Stelle 
- * dein eigenes Startmenü ergänzen).
+ * Bringt das gegebene DOM-Element (Fenster) in den Vordergrund.
+ * @param {Element} element
  */
-function showStartMenu() {
-  alert('Startmenü-Funktion momentan nicht implementiert.');
+function bringToFront(element) {
+  // Finde das aktuell höchste z-index, und setze das neue etwas darüber
+  const windows = document.querySelectorAll('.window.show');
+  let topZ = 500;
+  windows.forEach(w => {
+    const z = parseInt(getComputedStyle(w).zIndex) || 0;
+    if (z > topZ) topZ = z;
+  });
+  element.style.zIndex = topZ + 1;
 }
 
 /**
- * Zieht das Fenster bei gedrückter Maustaste.
- * Problemstellung: Hier müsste noch ein Drag-&-Drop-Handling implementiert werden. 
- * (Ist als Platzhalter gedacht; eine vollwertige Drag-Funktion kann komplexer sein.)
+ * Setzt alle Event-Listener, wenn DOM geladen ist.
  */
-document.querySelectorAll('.window-header').forEach(header => {
-  let isDragging = false;
-  let offsetX = 0;
-  let offsetY = 0;
-  const win = header.parentElement;
-
-  header.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    offsetX = e.clientX - win.offsetLeft;
-    offsetY = e.clientY - win.offsetTop;
-    win.style.transition = 'none';
-  });
-
-  document.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    win.style.left = `${e.clientX - offsetX}px`;
-    win.style.top = `${e.clientY - offsetY}px`;
-  });
-
-  document.addEventListener('mouseup', () => {
-    if (isDragging) {
-      isDragging = false;
-      win.style.transition = '';
-    }
-  });
-});
-
-/**
- * Aktualisiert die Uhr (Zeit und Datum) jede Sekunde.
- */
-function updateTime() {
-  const now = new Date();
-  // Optionen für die Datumsanzeige
-  const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  const timeString = now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
-  const dateString = now.toLocaleDateString('de-DE', dateOptions);
-
-  document.getElementById('current-time').textContent = timeString;
-  document.getElementById('current-date').textContent = dateString;
-}
-
-// Beim Laden der Seite die Uhr starten und sofort aktualisieren
 window.addEventListener('DOMContentLoaded', () => {
+  // ======= Öffnen per Klick auf Desktop-Icons und Taskbar-Icons =======
+  document.querySelectorAll('.desktop-icon, .app-icon').forEach(el => {
+    const appId = el.getAttribute('data-app');
+    if (!appId) return; // Start-Button hat kein data-app
+    el.addEventListener('click', () => openApp(appId));
+  });
+
+  // ======= Fenster-Steuerung: Minimize / Maximize / Close =======
+  document.querySelectorAll('.window-control').forEach(control => {
+    const action = control.getAttribute('data-action');
+    const appId = control.getAttribute('data-app');
+    control.addEventListener('click', () => {
+      if (action === 'minimize') minimizeApp(appId);
+      if (action === 'close')     closeApp(appId);
+      if (action === 'toggleMaximize') toggleMaximize(appId);
+    });
+  });
+
+  // ======= Drag-&-Drop: Fenster-Verschieben =======
+  document.querySelectorAll('.window-header').forEach(header => {
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+    const win = header.parentElement;
+
+    header.addEventListener('mousedown', e => {
+      // Nur linken Button behandeln
+      if (e.button !== 0) return;
+      isDragging = true;
+      offsetX = e.clientX - win.offsetLeft;
+      offsetY = e.clientY - win.offsetTop;
+      win.style.transition = 'none'; // während Drag nicht animieren
+    });
+
+    document.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      let newX = e.clientX - offsetX;
+      let newY = e.clientY - offsetY;
+      // Optional: Begrenze das Verschieben, damit Fenster nicht komplett außerhalb landen
+      const maxX = window.innerWidth - win.offsetWidth;
+      const maxY = window.innerHeight - win.offsetHeight;
+      if (newX < 0) newX = 0;
+      if (newY < 0) newY = 0;
+      if (newX > maxX) newX = maxX;
+      if (newY > maxY) newY = maxY;
+      win.style.left = `${newX}px`;
+      win.style.top = `${newY}px`;
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        win.style.transition = ''; // Animation wieder aktivieren
+      }
+    });
+  });
+
+  // ======= Spinner ausblenden, sobald <iframe> geladen ist =======
+  document.querySelectorAll('.window-content iframe').forEach(frame => {
+    frame.addEventListener('load', () => {
+      // Verstecke das vorherige .loading-Element, und zeige das iframe
+      const loadingDiv = frame.previousElementSibling;
+      if (loadingDiv && loadingDiv.classList.contains('loading')) {
+        loadingDiv.style.display = 'none';
+      }
+      frame.style.display = 'block';
+    });
+  });
+
+  // ======= Uhr initialisieren und jede Sekunde aktualisieren =======
+  function updateTime() {
+    const now = new Date();
+    const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const timeString = now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+    const dateString = now.toLocaleDateString('de-DE', dateOptions);
+    document.getElementById('current-time').textContent = timeString;
+    document.getElementById('current-date').textContent = dateString;
+  }
   updateTime();
   setInterval(updateTime, 1000);
+
+  // ======= Start-Button: Platzhalter =======
+  document.getElementById('start-button').addEventListener('click', () => {
+    alert('Startmenü-Funktion ist hier nur Platzhalter.');
+  });
 });
